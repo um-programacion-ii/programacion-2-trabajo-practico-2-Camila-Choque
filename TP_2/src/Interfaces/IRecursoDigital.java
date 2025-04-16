@@ -5,7 +5,7 @@ public interface IRecursoDigital {
 
     int getId();
     String getTitulo();
-    String getEstado();
+    TipoEstado getEstado();
     String getAutor();
 
     void setTitulo(String titulo);

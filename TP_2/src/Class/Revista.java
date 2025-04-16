@@ -1,6 +1,8 @@
 package Class;
 
-public class Revista extends RecursoDigital{
+import Interfaces.IRecursoDigital;
+
+public class Revista extends RecursoDigital implements IRecursoDigital {
 
     private int numeroEdicion;
 

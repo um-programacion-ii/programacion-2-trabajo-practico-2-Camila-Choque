@@ -1,6 +1,8 @@
 package Class;
 
-public class Libro extends RecursoDigital{
+import Interfaces.IRecursoDigital;
+
+public class Libro extends RecursoDigital implements IRecursoDigital {
 
     private int numeroPaginas;
 

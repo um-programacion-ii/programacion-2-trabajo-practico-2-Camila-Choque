@@ -1,6 +1,8 @@
 package Class;
 
-public abstract class RecursoDigital {
+import Interfaces.IRecursoDigital;
+
+public abstract class RecursoDigital implements IRecursoDigital {
     private final int id;
     private String titulo;
     private TipoEstado estado;
