@@ -3,11 +3,13 @@ package Class;
 public abstract class RecursoDigital {
     private final int id;
     private String titulo;
-    private String estado;
+    private TipoEstado estado;
     private String autor;
 
     //CONSTRUCTOR
-    public RecursoDigital(int id, String titulo, String estado, String autor) {
+
+
+    public RecursoDigital(int id, String titulo, TipoEstado estado, String autor) {
         this.id = id;
         this.titulo = titulo;
         this.estado = estado;
@@ -23,7 +25,7 @@ public abstract class RecursoDigital {
         return titulo;
     }
 
-    public String getEstado() {
+    public TipoEstado getEstado() {
         return estado;
     }
 
@@ -36,11 +38,19 @@ public abstract class RecursoDigital {
         this.titulo = titulo;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(TipoEstado estado) {
         this.estado = estado;
     }
 
     public void setAutor(String autor) {
         this.autor = autor;
     }
+
+    public enum TipoEstado {
+        DISPONIBLE,
+        PRESTADO,
+        VENCIDO,
+        RESERVADO
+    }
+
 }
