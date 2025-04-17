@@ -1,6 +1,8 @@
 package Class;
 
-public class AudioLibro extends RecursoDigital{
+import Interfaces.IRecursoDigital;
+
+public class AudioLibro extends RecursoDigital implements IRecursoDigital {
 
     private int duracionMinutos;
 
