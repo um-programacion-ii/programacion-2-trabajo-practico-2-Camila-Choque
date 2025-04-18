@@ -7,15 +7,15 @@ public abstract class RecursoDigital implements IRecursoDigital {
     private String titulo;
     private TipoEstado estado;
     private String autor;
+    private String categoria;
 
     //CONSTRUCTOR
-
-
-    public RecursoDigital(int id, String titulo, TipoEstado estado, String autor) {
+    public RecursoDigital(int id, String titulo, TipoEstado estado, String autor, String categoria) {
         this.id = id;
         this.titulo = titulo;
         this.estado = estado;
         this.autor = autor;
+        this.categoria = categoria;
     }
 
     //GETTER
@@ -35,6 +35,8 @@ public abstract class RecursoDigital implements IRecursoDigital {
         return autor;
     }
 
+    public String getCategoria() {return categoria;}
+
     //SETTER
     public void setTitulo(String titulo) {
         this.titulo = titulo;
@@ -47,6 +49,8 @@ public abstract class RecursoDigital implements IRecursoDigital {
     public void setAutor(String autor) {
         this.autor = autor;
     }
+
+    public void setCategoria(String categoria) {this.categoria = categoria;}
 
     public enum TipoEstado {
         DISPONIBLE,

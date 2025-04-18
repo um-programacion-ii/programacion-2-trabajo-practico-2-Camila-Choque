@@ -7,6 +7,7 @@ import Class.GestorUsuario;
 import Class.GestorRecursos;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -60,7 +61,23 @@ public class Main {
                             gestorRecursos.mostrarRecursos();
                         }
                         case 2 -> gestorRecursos.crearRecursoDesdeConsola();
-                        case 3 -> System.out.println("↩️ Volviendo al menú principal...");
+                        case 3 -> {
+                            System.out.print("🔎 Ingrese el título a buscar: ");
+                            String titulo = new Scanner(System.in).nextLine();
+                            gestorRecursos.buscarRecursoPorTitulo(titulo);
+                        }
+                        case 4 -> {
+                            System.out.print("🏷️ Ingrese la categoría a filtrar: ");
+                            String categoria = new Scanner(System.in).nextLine();
+                            gestorRecursos.buscarPorCategoria(categoria);
+                        }
+
+                        // Opción para ordenar por título
+                        case 5 -> {
+                            System.out.println("🔠 Ordenando recursos por título...");
+                            gestorRecursos.mostrarRecursos();
+                        }
+                        case 6 -> System.out.println("↩️ Volviendo al menú principal...");
                         default -> System.out.println("⚠️ Opción inválida.");
                     }
                 }

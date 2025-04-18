@@ -8,8 +8,9 @@ public class Revista extends RecursoDigital implements IRecursoDigital {
 
     //CONSTRUCTOR
 
-    public Revista(int id, String titulo, TipoEstado estado, String autor, int numeroEdicion) {
-        super(id, titulo, estado, autor);
+
+    public Revista(int id, String titulo, TipoEstado estado, String autor, String categoria, int numeroEdicion) {
+        super(id, titulo, estado, autor, categoria);
         this.numeroEdicion = numeroEdicion;
     }
 
