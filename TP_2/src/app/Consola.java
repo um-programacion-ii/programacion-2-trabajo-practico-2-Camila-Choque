@@ -1,7 +1,5 @@
 package app;
 import java.util.Scanner;
-import Class.Usuario;
-import Class.RecursoDigital;
 
 public class Consola {
 
@@ -25,14 +23,17 @@ public class Consola {
     public void mostrarMenuUsuarios() {
         System.out.println(" \uD83D\uDC64 ******* MENÚ USUARIOS ******* \uD83D\uDC64");
         System.out.println("1. Ver usuarios");
-        System.out.println("2. Volver al menú principal");
+        System.out.println("2. Crear nuevo usuario");
+        System.out.println("3. Buscar usuario por nombre");
+        System.out.println("4. Volver al menú principal");
         System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
     }
 
     public void mostrarMenuRecursos() {
         System.out.println("\uD83D\uDCDA *******MENÚ RECURSOS ******* \uD83D\uDCDA");
         System.out.println("1. Ver todos los recursos");
-        System.out.println("2. Volver al menú principal");
+        System.out.println("2. Crear nuevo recurso");
+        System.out.println("3. Volver al menú principal");
         System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
     }
 
@@ -43,23 +44,10 @@ public class Consola {
             return -1;
         }
     }
-
-    public static void mostrarUsuarios(Usuario[] usuarios) {
-        System.out.println("\n \uD83D\uDC64  Lista de usuarios:");
-        for (Usuario u : usuarios) {
-            System.out.println("-------------------------");
-            System.out.println(u);
-
-        }
+    public String leerTexto() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 
-    public static void mostrarRecursos(RecursoDigital[] recursos) {
-        System.out.println("\n \uD83D\uDDC2\uFE0F  Recursos disponibles:");
-        for (RecursoDigital r : recursos) {
-            System.out.println("-------------------------");
-            System.out.println("\n" + r);
 
-        }
-    }
 }
-
