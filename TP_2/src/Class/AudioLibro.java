@@ -8,8 +8,9 @@ public class AudioLibro extends RecursoDigital implements IRecursoDigital {
 
     //CONSTRUCTOR
 
-    public AudioLibro(int id, String titulo, TipoEstado estado, String autor, int duracionMinutos) {
-        super(id, titulo, estado, autor);
+
+    public AudioLibro(int id, String titulo, TipoEstado estado, String autor, String categoria, int duracionMinutos) {
+        super(id, titulo, estado, autor, categoria);
         this.duracionMinutos = duracionMinutos;
     }
 

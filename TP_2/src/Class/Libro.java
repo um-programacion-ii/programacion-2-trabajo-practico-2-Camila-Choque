@@ -9,8 +9,8 @@ public class Libro extends RecursoDigital implements IRecursoDigital {
     //CONSTRUCTOR
 
 
-    public Libro(int id, String titulo, TipoEstado estado, String autor, int numeroPaginas) {
-        super(id, titulo, estado, autor);
+    public Libro(int id, String titulo, TipoEstado estado, String autor, String categoria, int numeroPaginas) {
+        super(id, titulo, estado, autor, categoria);
         this.numeroPaginas = numeroPaginas;
     }
 

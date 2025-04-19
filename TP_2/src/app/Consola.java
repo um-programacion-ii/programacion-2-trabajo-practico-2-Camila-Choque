@@ -33,7 +33,10 @@ public class Consola {
         System.out.println("\uD83D\uDCDA *******MENÚ RECURSOS ******* \uD83D\uDCDA");
         System.out.println("1. Ver todos los recursos");
         System.out.println("2. Crear nuevo recurso");
-        System.out.println("3. Volver al menú principal");
+        System.out.println("3. Buscar recurso por título");
+        System.out.println("4. Buscar por categoría");
+        System.out.println("5. Ordenar recursos por título");
+        System.out.println("6. Volver al menú principal");
         System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
     }
 
