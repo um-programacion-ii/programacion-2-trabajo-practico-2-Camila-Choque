@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
 import java.util.*;
+import Exceptions.UsuarioNoEncontradoException;
 
 public class GestorUsuario {
     private ArrayList<Usuario> usuarios;
@@ -45,9 +46,13 @@ public class GestorUsuario {
             }
         }
     }
-    //Se aprendio a utilizar map con chatGPT
-    public List<Usuario> buscarPorNombre(String nombre) {
-        return usuariosPorNombre.getOrDefault(nombre, new ArrayList<>());
+    //Se aprendió a utilizar map con chatGPT
+    public List<Usuario> buscarPorNombre(String nombre) throws UsuarioNoEncontradoException {
+        List<Usuario> encontrados = usuariosPorNombre.getOrDefault(nombre, new ArrayList<>());
+        if (encontrados.isEmpty()) {
+            throw new UsuarioNoEncontradoException("⚠️ No se encontraron usuarios con el nombre: " + nombre);
+        }
+        return encontrados;
     }
 
     public ArrayList<Usuario> getUsuarios() {

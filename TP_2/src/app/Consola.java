@@ -37,7 +37,8 @@ public class Consola {
         System.out.println("4. Buscar por categoría");
         System.out.println("5. Ordenar recursos por título");
         System.out.println("6. Mostrar categorías disponibles");
-        System.out.println("7. Volver al menú principal");
+        System.out.println("7. Prestar un recurso");
+        System.out.println("8. Volver al menú principal");
         System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
     }
 
