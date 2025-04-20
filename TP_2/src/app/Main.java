@@ -8,6 +8,9 @@ import Class.GestorRecursos;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import Exceptions.UsuarioNoEncontradoException;
+import Exceptions.RecursoNoDisponibleException;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -37,17 +40,19 @@ public class Main {
                         case 3 -> {
                             System.out.print("🔍 Ingrese el nombre a buscar: ");
                             String nombreBuscado = consola.leerTexto();
-                            List<Usuario> encontrados = gestorUsuario.buscarPorNombre(nombreBuscado);
-                            if (encontrados.isEmpty()) {
-                                System.out.println("⚠️ No se encontraron usuarios con ese nombre.");
-                            } else {
+
+                            try {
+                                List<Usuario> encontrados = gestorUsuario.buscarPorNombre(nombreBuscado);
                                 System.out.println("🔎 Usuarios encontrados:");
                                 for (Usuario u : encontrados) {
                                     System.out.println("-------------------------");
                                     System.out.println(u);
                                 }
+                            } catch (UsuarioNoEncontradoException e) {
+                                System.out.println(e.getMessage());
                             }
                         }
+
                         case 4 -> System.out.println("↩️ Volviendo al menú principal...");
                         default -> System.out.println("⚠️ Opción incorrecta.");
                     }
@@ -62,9 +67,15 @@ public class Main {
                         }
                         case 2 -> gestorRecursos.crearRecursoDesdeConsola();
                         case 3 -> {
-                            System.out.print("🔎 Ingrese el título a buscar: ");
-                            String titulo = new Scanner(System.in).nextLine();
-                            gestorRecursos.buscarRecursoPorTitulo(titulo);
+                            System.out.print("🔍 Ingrese el título a buscar: ");
+                            String titulo = consola.leerTexto();
+
+                            try {
+                                gestorRecursos.buscarRecursoPorTitulo(titulo);
+                            } catch (RecursoNoDisponibleException e) {
+                                System.out.println(e.getMessage());
+                            }
+
                         }
                         case 4 -> {
                             System.out.print("🏷️ Ingrese la categoría a filtrar: ");
@@ -78,7 +89,9 @@ public class Main {
                             gestorRecursos.mostrarRecursos();
                         }
                         case 6 -> gestorRecursos.mostrarCategoriasDisponibles();
-                        case 7 -> System.out.println("↩️ Volviendo al menú principal...");
+                        case 7 -> gestorRecursos.prestarRecursoDesdeConsola();
+
+                        case 8 -> System.out.println("↩️ Volviendo al menú principal...");
                         default -> System.out.println("⚠️ Opción inválida.");
                     }
                 }

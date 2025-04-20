@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.Collections;
 import Enum.CategoriaRecurso;
+import Exceptions.RecursoNoDisponibleException;
 
 
 public class GestorRecursos {
@@ -78,13 +79,13 @@ public class GestorRecursos {
         }
     }
     //Se aprendio a utilizar map con chatGPT
-    public void buscarRecursoPorTitulo(String tituloBuscado) {
+    public void buscarRecursoPorTitulo(String tituloBuscado) throws RecursoNoDisponibleException {
         List<RecursoDigital> encontrados = recursos.stream()
                 .filter(r -> r.getTitulo().toLowerCase().contains(tituloBuscado.toLowerCase()))
                 .toList();
 
         if (encontrados.isEmpty()) {
-            System.out.println("🔍 No se encontraron recursos con el título: " + tituloBuscado);
+            throw new RecursoNoDisponibleException("⚠️ No se encontraron recursos con el título: " + tituloBuscado);
         } else {
             System.out.println("📄 Recursos encontrados:");
             for (RecursoDigital r : encontrados) {
@@ -93,6 +94,7 @@ public class GestorRecursos {
             }
         }
     }
+
     //Se aprendio a utilizar map con chatGPT
     public void buscarPorCategoria(String categoriaBuscada) {
         List<RecursoDigital> encontrados = recursos.stream()
@@ -100,7 +102,7 @@ public class GestorRecursos {
                 .toList();
 
         if (encontrados.isEmpty()) {
-            System.out.println("🔍 No se encontraron recursos en la categoría: " + categoriaBuscada);
+            System.out.println("⚠️ No se encontraron recursos en la categoría: " + categoriaBuscada);
         } else {
             System.out.println("📂 Recursos encontrados en la categoría \"" + categoriaBuscada + "\":");
             for (RecursoDigital r : encontrados) {
@@ -128,6 +130,8 @@ public class GestorRecursos {
         } while (opcion < 1 || opcion > categorias.length);
 
         return categorias[opcion - 1];
+
+
     }
 
     public void mostrarCategoriasDisponibles() {
@@ -161,6 +165,53 @@ public class GestorRecursos {
             }
         }
         if (!hayAudioLibros) System.out.println("  ❌ No hay audiolibros disponibles.");
+    }
+
+
+    private void prestarRecurso(RecursoDigital recurso) throws RecursoNoDisponibleException {
+        if (recurso.getEstado() != RecursoDigital.TipoEstado.DISPONIBLE) {
+            throw new RecursoNoDisponibleException("❌ El recurso '" + recurso.getTitulo() + "' no está disponible.");
+        }
+
+        recurso.setEstado(RecursoDigital.TipoEstado.PRESTADO);
+        System.out.println("✅ Recurso prestado exitosamente.");
+    }
+
+    //PUEDE LLEGAR A MODIFICARSE CUANDO SE IMPLEMENTE PRESTAMOS
+    public void prestarRecursoDesdeConsola() {
+        if (recursos.isEmpty()) {
+            System.out.println("⚠️ No hay recursos disponibles para prestar.");
+            return;
+        }
+        System.out.println("📋 Recursos disponibles para préstamo:");
+        List<RecursoDigital> disponibles = new ArrayList<>();
+
+        int index = 1;
+        for (RecursoDigital r : recursos) {
+            if (r.getEstado() == RecursoDigital.TipoEstado.DISPONIBLE) {
+                System.out.println(index + ". " + r.getTitulo());
+                disponibles.add(r);
+                index++;
+            }
+        }
+        if (disponibles.isEmpty()) {
+            System.out.println("❌ No hay recursos en estado disponible.");
+            return;
+        }
+        System.out.print("➡️ Seleccione el número del recurso que desea prestar: ");
+        int seleccion = scanner.nextInt();
+        scanner.nextLine(); // Limpiar buffer
+
+        if (seleccion < 1 || seleccion > disponibles.size()) {
+            System.out.println("❌ Selección inválida.");
+            return;
+        }
+        RecursoDigital recurso = disponibles.get(seleccion - 1);
+        try {
+            prestarRecurso(recurso);
+        } catch (RecursoNoDisponibleException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 
