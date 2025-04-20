@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
 import java.util.Collections;
+import Enum.CategoriaRecurso;
 
 
 public class GestorRecursos {
@@ -29,8 +30,7 @@ public class GestorRecursos {
         System.out.print("👤 Autor: ");
         String autor = scanner.nextLine();
 
-        System.out.print("🏷️ Categoría: ");
-        String categoria = scanner.nextLine();
+        CategoriaRecurso categoria = asignarCategoriaDesdeConsola();
 
 
         int id = recursos.size() + 1;
@@ -96,7 +96,7 @@ public class GestorRecursos {
     //Se aprendio a utilizar map con chatGPT
     public void buscarPorCategoria(String categoriaBuscada) {
         List<RecursoDigital> encontrados = recursos.stream()
-                .filter(r -> r.getCategoria().equalsIgnoreCase(categoriaBuscada))
+                .filter(r -> r.getCategoria().name().equalsIgnoreCase(categoriaBuscada))
                 .toList();
 
         if (encontrados.isEmpty()) {
@@ -113,4 +113,56 @@ public class GestorRecursos {
     public ArrayList<RecursoDigital> getRecursos() {
         return recursos;
     }
+    private CategoriaRecurso asignarCategoriaDesdeConsola() {
+        System.out.println("📚 Seleccione la categoría del recurso:");
+        CategoriaRecurso[] categorias = CategoriaRecurso.values();
+        for (int i = 0; i < categorias.length; i++) {
+            System.out.println((i + 1) + ". " + categorias[i]);
+        }
+
+        int opcion;
+        do {
+            System.out.print("Ingrese una opción válida (1-" + categorias.length + "): ");
+            opcion = scanner.nextInt();
+            scanner.nextLine(); // limpiar buffer
+        } while (opcion < 1 || opcion > categorias.length);
+
+        return categorias[opcion - 1];
+    }
+
+    public void mostrarCategoriasDisponibles() {
+        System.out.println("📚 Recursos disponibles por categoría:\n");
+
+        boolean hayLibros = false, hayRevistas = false, hayAudioLibros = false;
+
+        System.out.println("🔹 Libros disponibles:");
+        for (RecursoDigital r : recursos) {
+            if (r instanceof Libro && r.getEstado() == RecursoDigital.TipoEstado.DISPONIBLE) {
+                System.out.println(r);
+                hayLibros = true;
+            }
+        }
+        if (!hayLibros) System.out.println("  ❌ No hay libros disponibles.");
+
+        System.out.println("\n🔹 Revistas disponibles:");
+        for (RecursoDigital r : recursos) {
+            if (r instanceof Revista && r.getEstado() == RecursoDigital.TipoEstado.DISPONIBLE) {
+                System.out.println(r);
+                hayRevistas = true;
+            }
+        }
+        if (!hayRevistas) System.out.println("  ❌ No hay revistas disponibles.");
+
+        System.out.println("\n🔹 Audiolibros disponibles:");
+        for (RecursoDigital r : recursos) {
+            if (r instanceof AudioLibro && r.getEstado() == RecursoDigital.TipoEstado.DISPONIBLE) {
+                System.out.println(r);
+                hayAudioLibros = true;
+            }
+        }
+        if (!hayAudioLibros) System.out.println("  ❌ No hay audiolibros disponibles.");
+    }
+
+
+
 }

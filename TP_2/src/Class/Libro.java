@@ -1,6 +1,6 @@
 package Class;
-
 import Interfaces.IRecursoDigital;
+import Enum.CategoriaRecurso;
 
 public class Libro extends RecursoDigital implements IRecursoDigital {
 
@@ -9,7 +9,7 @@ public class Libro extends RecursoDigital implements IRecursoDigital {
     //CONSTRUCTOR
 
 
-    public Libro(int id, String titulo, TipoEstado estado, String autor, String categoria, int numeroPaginas) {
+    public Libro(int id, String titulo, TipoEstado estado, String autor, CategoriaRecurso categoria, int numeroPaginas) {
         super(id, titulo, estado, autor, categoria);
         this.numeroPaginas = numeroPaginas;
     }
