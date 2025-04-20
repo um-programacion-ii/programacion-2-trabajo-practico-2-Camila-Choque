@@ -1,16 +1,20 @@
 package Class;
 
 import Interfaces.IRecursoDigital;
+import Enum.CategoriaRecurso;
+
 
 public abstract class RecursoDigital implements IRecursoDigital {
     private final int id;
     private String titulo;
     private TipoEstado estado;
     private String autor;
-    private String categoria;
+    private CategoriaRecurso categoria;
+
 
     //CONSTRUCTOR
-    public RecursoDigital(int id, String titulo, TipoEstado estado, String autor, String categoria) {
+
+    public RecursoDigital(int id, String titulo, TipoEstado estado, String autor, CategoriaRecurso categoria) {
         this.id = id;
         this.titulo = titulo;
         this.estado = estado;
@@ -35,7 +39,7 @@ public abstract class RecursoDigital implements IRecursoDigital {
         return autor;
     }
 
-    public String getCategoria() {return categoria;}
+    public CategoriaRecurso getCategoria() {return categoria;}
 
     //SETTER
     public void setTitulo(String titulo) {
@@ -50,7 +54,7 @@ public abstract class RecursoDigital implements IRecursoDigital {
         this.autor = autor;
     }
 
-    public void setCategoria(String categoria) {this.categoria = categoria;}
+    public void setCategoria(CategoriaRecurso categoria) {this.categoria = categoria;}
 
     public enum TipoEstado {
         DISPONIBLE,

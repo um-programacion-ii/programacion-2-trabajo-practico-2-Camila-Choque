@@ -77,7 +77,8 @@ public class Main {
                             System.out.println("🔠 Ordenando recursos por título...");
                             gestorRecursos.mostrarRecursos();
                         }
-                        case 6 -> System.out.println("↩️ Volviendo al menú principal...");
+                        case 6 -> gestorRecursos.mostrarCategoriasDisponibles();
+                        case 7 -> System.out.println("↩️ Volviendo al menú principal...");
                         default -> System.out.println("⚠️ Opción inválida.");
                     }
                 }

@@ -1,15 +1,14 @@
 package Class;
 
 import Interfaces.IRecursoDigital;
+import Enum.CategoriaRecurso;
 
 public class Revista extends RecursoDigital implements IRecursoDigital {
 
     private int numeroEdicion;
 
     //CONSTRUCTOR
-
-
-    public Revista(int id, String titulo, TipoEstado estado, String autor, String categoria, int numeroEdicion) {
+    public Revista(int id, String titulo, TipoEstado estado, String autor, CategoriaRecurso categoria, int numeroEdicion) {
         super(id, titulo, estado, autor, categoria);
         this.numeroEdicion = numeroEdicion;
     }
