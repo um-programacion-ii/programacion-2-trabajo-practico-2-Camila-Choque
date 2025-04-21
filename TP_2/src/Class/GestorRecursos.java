@@ -168,7 +168,7 @@ public class GestorRecursos {
         System.out.println("✅ Recurso prestado exitosamente.");
     }
 
-    //PUEDE LLEGAR A MODIFICARSE CUANDO SE IMPLEMENTE PRESTAMOS
+
     public void prestarRecursoDesdeConsola() {
         if (recursos.isEmpty()) {
             System.out.println("⚠️ No hay recursos disponibles para prestar.");
@@ -191,8 +191,7 @@ public class GestorRecursos {
         }
         System.out.print("➡️ Seleccione el número del recurso que desea prestar: ");
         int seleccion = scanner.nextInt();
-        scanner.nextLine(); // Limpiar buffer
-
+        scanner.nextLine();
         if (seleccion < 1 || seleccion > disponibles.size()) {
             System.out.println("❌ Selección inválida.");
             return;

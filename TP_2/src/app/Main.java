@@ -2,6 +2,7 @@ package app;
 import Class.Usuario;
 import Class.RecursoDigital;
 import  Servicios.ServicioNotificacionesEmail;
+import  Servicios.ServicioNotificacionesSMS;
 import Interfaces.ServicioNotificaciones;
 import Class.GestorUsuario;
 import Class.GestorRecursos;
@@ -13,6 +14,7 @@ import Exceptions.RecursoNoDisponibleException;
 import Class.GestorPrestamos;
 import Class.Prestamo;
 import Class.GestorReservas;
+import Class.GestorNotificaciones;
 
 
 public class Main {
@@ -30,17 +32,18 @@ public class Main {
         Consola consola = new Consola();
         GestorUsuario gestorUsuario = new GestorUsuario();
         GestorRecursos gestorRecursos = new GestorRecursos();
-        GestorPrestamos gestorPrestamos = new GestorPrestamos();
-        GestorReservas gestorReservas = new GestorReservas();
+        GestorNotificaciones gestorNotificaciones = new GestorNotificaciones();
 
+        ServicioNotificaciones email = new ServicioNotificacionesEmail();
+        ServicioNotificaciones sms = new ServicioNotificacionesSMS();
+        GestorPrestamos gestorPrestamos = new GestorPrestamos(sms, gestorNotificaciones);
+        GestorReservas gestorReservas = new GestorReservas(email, gestorNotificaciones);
 
 
         List<Usuario> usuarios = new ArrayList<>();
         List<RecursoDigital> recursos = new ArrayList<>();
         List<Prestamo> prestamos = new ArrayList<>();
 
-
-        ServicioNotificaciones notificador = new ServicioNotificacionesEmail();
 
         boolean salir = false;
         while (!salir) {
