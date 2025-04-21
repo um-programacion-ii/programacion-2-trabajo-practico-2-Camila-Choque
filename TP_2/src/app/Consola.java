@@ -17,7 +17,8 @@ public class Consola {
         System.out.println("1. Usuarios");
         System.out.println("2. Recursos");
         System.out.println("3. Prestamos");
-        System.out.println("4. Salir");
+        System.out.println("4. Reservas");
+        System.out.println("5. Salir");
 
     }
 
@@ -31,7 +32,7 @@ public class Consola {
     }
 
     public void mostrarMenuRecursos() {
-        System.out.println("\uD83D\uDCDA *******MENÚ RECURSOS ******* \uD83D\uDCDA");
+        System.out.println("\uD83D\uDCDA ******* MENÚ RECURSOS ******* \uD83D\uDCDA");
         System.out.println("1. Ver todos los recursos");
         System.out.println("2. Crear nuevo recurso");
         System.out.println("3. Buscar recurso por título");
@@ -43,7 +44,7 @@ public class Consola {
         System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
     }
     public void mostrarMenuPrestamos() {
-        System.out.println("\n🔁 **** MENÚ DE PRÉSTAMOS ****");
+        System.out.println("\n🔁 *******MENÚ PRÉSTAMOS ******* 🔁");
         System.out.println("1. Realizar préstamo");
         System.out.println("2. Devolver recurso");
         System.out.println("3. Mostrar todos los préstamos");
@@ -51,6 +52,14 @@ public class Consola {
         System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
     }
 
+    public void mostrarMenuReservas() {
+        System.out.println("\n📚 ******* MENÚ RESERVAS ******* 📚");
+        System.out.println("1. Crear nueva reserva");
+        System.out.println("2. Mostrar reservas en espera");
+        System.out.println("3. Cancelar reserva");
+        System.out.println("4. Volver al menú principal");
+        System.out.print("⚙️ Seleccionar una opción: ");
+    }
 
     public int leerOpcion() {
         try {

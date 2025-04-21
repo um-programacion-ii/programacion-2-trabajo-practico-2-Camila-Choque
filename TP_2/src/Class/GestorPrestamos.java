@@ -45,11 +45,13 @@ public class GestorPrestamos {
 
         }
     }
-    // DEVOLUCION: ChatGPT me ayudo con algunos problemas que tenia 
+    // DEVOLUCION: ChatGPT me ayudo con algunos problemas que tenia
     public void devolverRecurso(Usuario usuario, RecursoDigital recurso) {
         boolean encontrado = false;
         for (Prestamo p : prestamos) {
-            System.out.println("🔍 Verificando préstamo: " + p);
+            System.out.println("🔍 Verificando préstamo: " );
+            System.out.println("-----------");
+            System.out.println(p);
             if (p.getRecurso().getTitulo().equals(recurso.getTitulo()) &&
                     p.getUsuario().getNombre().equals(usuario.getNombre()) &&
                     p.getFechaDevolucion() == null) {

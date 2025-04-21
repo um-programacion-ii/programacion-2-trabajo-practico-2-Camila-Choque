@@ -12,6 +12,7 @@ import Exceptions.UsuarioNoEncontradoException;
 import Exceptions.RecursoNoDisponibleException;
 import Class.GestorPrestamos;
 import Class.Prestamo;
+import Class.GestorReservas;
 
 
 public class Main {
@@ -30,6 +31,7 @@ public class Main {
         GestorUsuario gestorUsuario = new GestorUsuario();
         GestorRecursos gestorRecursos = new GestorRecursos();
         GestorPrestamos gestorPrestamos = new GestorPrestamos();
+        GestorReservas gestorReservas = new GestorReservas();
 
 
 
@@ -203,8 +205,87 @@ public class Main {
                         }
                     }
                 }
+                //RESERVAS
+                case 4 -> {
+                    boolean salirReservas = false;
+                    while (!salirReservas) {
+                        consola.mostrarMenuReservas();
+                        int opcionReserva = consola.leerOpcion();
 
-                case 4 -> salir = true;
+                        switch (opcionReserva) {
+
+                            case 1 -> {
+                                System.out.print("📛 Ingrese el nombre del usuario: ");
+                                String nombreUsuario = consola.leerTexto();
+                                Usuario usuario = null;
+                                try {
+                                    List<Usuario> usuariosEncontrados = gestorUsuario.buscarPorNombre(nombreUsuario);
+                                    if (!usuariosEncontrados.isEmpty()) {
+                                        usuario = usuariosEncontrados.get(0);
+                                    } else {
+                                        System.out.println("⚠️ No se encontró el usuario.");
+                                        break;
+                                    }
+                                } catch (UsuarioNoEncontradoException e) {
+                                    System.out.println("❌ Usuario no encontrado.");
+                                    break;
+                                }
+
+                                System.out.print("📘 Ingrese el título del recurso a reservar: ");
+                                String titulo = consola.leerTexto();
+                                RecursoDigital recurso = null;
+                                try {
+                                    recurso = gestorRecursos.buscarRecursoPorTitulo(titulo);
+
+                                    gestorReservas.agregarReserva(usuario, recurso);
+                                } catch (RecursoNoDisponibleException e) {
+                                    System.out.println("❌ Recurso no disponible.");
+                                } catch (Exception e) {
+                                    System.out.println("⚠️ Error: " + e.getMessage());
+                                }
+                            }
+
+                            case 2 -> {
+                                gestorReservas.mostrarReservas();
+                            }
+                            case 3 -> {
+                                System.out.print("📛 Ingrese el nombre del usuario: ");
+                                String nombreUsuarioCancelar = consola.leerTexto();
+                                Usuario usuarioCancelar = null;
+                                try {
+                                    List<Usuario> usuariosEncontradosCancelar = gestorUsuario.buscarPorNombre(nombreUsuarioCancelar);
+                                    if (!usuariosEncontradosCancelar.isEmpty()) {
+                                        usuarioCancelar = usuariosEncontradosCancelar.get(0);
+                                    } else {
+                                        System.out.println("⚠️ No se encontró el usuario.");
+                                        break;
+                                    }
+                                } catch (UsuarioNoEncontradoException e) {
+                                    System.out.println("❌ Usuario no encontrado.");
+                                    break;
+                                }
+
+                                System.out.print("📘 Ingrese el título del recurso a cancelar: ");
+                                String tituloCancelar = consola.leerTexto();
+                                RecursoDigital recursoCancelar = null;
+                                try {
+                                    recursoCancelar = gestorRecursos.buscarRecursoPorTitulo(tituloCancelar);
+                                    gestorReservas.cancelarReserva(usuarioCancelar, recursoCancelar);
+                                } catch (RecursoNoDisponibleException e) {
+                                    System.out.println("❌ Recurso no disponible.");
+                                } catch (Exception e) {
+                                    System.out.println("⚠️ Error: " + e.getMessage());
+                                }
+                            }
+                            case 4 -> {
+                                System.out.println("↩️ Volviendo al menú principal...");
+                                salirReservas = true;
+                            }
+                            default -> System.out.println("⚠️ Opción inválida.");
+                        }
+                    }
+                }
+                case 5-> salir = true;
                 default -> System.out.println("⚠️ Opción incorrecta ⚠️. Intente de nuevo.");
             }
         }
