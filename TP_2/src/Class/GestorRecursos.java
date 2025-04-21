@@ -78,21 +78,12 @@ public class GestorRecursos {
             }
         }
     }
-    //Se aprendio a utilizar map con chatGPT
-    public void buscarRecursoPorTitulo(String tituloBuscado) throws RecursoNoDisponibleException {
-        List<RecursoDigital> encontrados = recursos.stream()
-                .filter(r -> r.getTitulo().toLowerCase().contains(tituloBuscado.toLowerCase()))
-                .toList();
 
-        if (encontrados.isEmpty()) {
-            throw new RecursoNoDisponibleException("⚠️ No se encontraron recursos con el título: " + tituloBuscado);
-        } else {
-            System.out.println("📄 Recursos encontrados:");
-            for (RecursoDigital r : encontrados) {
-                System.out.println("-------------------------");
-                System.out.println(r);
-            }
-        }
+    public RecursoDigital buscarRecursoPorTitulo(String tituloBuscado) throws RecursoNoDisponibleException {
+        return recursos.stream()
+                .filter(r -> r.getTitulo().equalsIgnoreCase(tituloBuscado))
+                .findFirst()
+                .orElseThrow(() -> new RecursoNoDisponibleException("❌ No se encontró un recurso con el título: " + tituloBuscado));
     }
 
     //Se aprendio a utilizar map con chatGPT
