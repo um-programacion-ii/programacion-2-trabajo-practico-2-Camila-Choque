@@ -12,6 +12,9 @@ public class Consola {
     }
 
     public void mostrarMenuPrincipal() {
+        System.out.println("----------------------------------------");
+        System.out.println("-----------BIBLIOTECA DIGITAL-----------");
+        System.out.println("----------------------------------------");
         System.out.println("\n\uD83C\uDF1F ******* MENÚ PRINCIPAL ******* \uD83C\uDF1F ");
         System.out.println("                                 ");
         System.out.println("1. Usuarios");
@@ -23,7 +26,7 @@ public class Consola {
     }
 
     public void mostrarMenuUsuarios() {
-        System.out.println(" \uD83D\uDC64 ******* MENÚ USUARIOS ******* \uD83D\uDC64");
+        System.out.println("******* MENÚ USUARIOS *******");
         System.out.println("1. Ver usuarios");
         System.out.println("2. Crear nuevo usuario");
         System.out.println("3. Buscar usuario por nombre");
@@ -32,19 +35,18 @@ public class Consola {
     }
 
     public void mostrarMenuRecursos() {
-        System.out.println("\uD83D\uDCDA ******* MENÚ RECURSOS ******* \uD83D\uDCDA");
+        System.out.println(" ******* MENÚ RECURSOS *******");
         System.out.println("1. Ver todos los recursos");
         System.out.println("2. Crear nuevo recurso");
         System.out.println("3. Buscar recurso por título");
         System.out.println("4. Buscar por categoría");
         System.out.println("5. Ordenar recursos por título");
         System.out.println("6. Mostrar categorías disponibles");
-        System.out.println("7. Prestar un recurso");
-        System.out.println("8. Volver al menú principal");
+        System.out.println("7. Volver al menú principal");
         System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
     }
     public void mostrarMenuPrestamos() {
-        System.out.println("\n🔁 *******MENÚ PRÉSTAMOS ******* 🔁");
+        System.out.println("\n *******MENÚ PRÉSTAMOS ******* ");
         System.out.println("1. Realizar préstamo");
         System.out.println("2. Devolver recurso");
         System.out.println("3. Mostrar todos los préstamos");
@@ -53,7 +55,7 @@ public class Consola {
     }
 
     public void mostrarMenuReservas() {
-        System.out.println("\n📚 ******* MENÚ RESERVAS ******* 📚");
+        System.out.println("\n******* MENÚ RESERVAS ******* ");
         System.out.println("1. Crear nueva reserva");
         System.out.println("2. Mostrar reservas ");
         System.out.println("3. Cancelar reserva");

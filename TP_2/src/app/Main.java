@@ -60,12 +60,12 @@ public class Main {
                         case 1 -> gestorUsuario.mostrarUsuarios();
                         case 2 -> gestorUsuario.agregarUsuarioDesdeConsola();
                         case 3 -> {
-                            System.out.print("🔍 Ingrese el nombre a buscar: ");
+                            System.out.print(" Ingrese el nombre a buscar: ");
                             String nombreBuscado = consola.leerTexto();
 
                             try {
                                 List<Usuario> encontrados = gestorUsuario.buscarPorNombre(nombreBuscado);
-                                System.out.println("🔎 Usuarios encontrados:");
+                                System.out.println(" Usuarios encontrados:");
                                 for (Usuario u : encontrados) {
                                     System.out.println("-------------------------");
                                     System.out.println(u);
@@ -76,7 +76,7 @@ public class Main {
                         }
 
                         case 4 -> System.out.println("↩️ Volviendo al menú principal...");
-                        default -> System.out.println("⚠️ Opción incorrecta.");
+                        default -> System.out.println("  Opción incorrecta.");
                     }
                 }
                 //RECURSOS
@@ -89,18 +89,20 @@ public class Main {
                         }
                         case 2 -> gestorRecursos.crearRecursoDesdeConsola();
                         case 3 -> {
-                            System.out.print("🔍 Ingrese el título a buscar: ");
+                            System.out.print(" Ingrese el título a buscar: ");
                             String titulo = consola.leerTexto();
-
+                            RecursoDigital recurso = null;
                             try {
-                                gestorRecursos.buscarRecursoPorTitulo(titulo);
+                                recurso = gestorRecursos.buscarRecursoPorTitulo(titulo);
+                                System.out.println("--------------------------");
+                                System.out.println(recurso);
                             } catch (RecursoNoDisponibleException e) {
                                 System.out.println(e.getMessage());
                             }
 
                         }
                         case 4 -> {
-                            System.out.print("🏷️ Ingrese la categoría a filtrar: ");
+                            System.out.print(" Ingrese la categoría a filtrar: ");
                             String categoria = new Scanner(System.in).nextLine();
                             gestorRecursos.buscarPorCategoria(categoria);
                         }
@@ -111,10 +113,9 @@ public class Main {
                             gestorRecursos.mostrarRecursos();
                         }
                         case 6 -> gestorRecursos.mostrarCategoriasDisponibles();
-                        case 7 -> gestorRecursos.prestarRecursoDesdeConsola();
 
-                        case 8 -> System.out.println("↩️ Volviendo al menú principal...");
-                        default -> System.out.println("⚠️ Opción inválida.");
+                        case 7 -> System.out.println("↩️ Volviendo al menú principal...");
+                        default -> System.out.println(" Opción inválida.");
                     }
                 }
 
@@ -131,7 +132,7 @@ public class Main {
                                 RecursoDigital recurso = null;
 
                                 while (usuario == null) {
-                                    System.out.print("📛 Ingrese el nombre del usuario: ");
+                                    System.out.print(" Ingrese el nombre del usuario: ");
                                     String nombreUsuario = consola.leerTexto();
 
                                     try {
@@ -139,22 +140,22 @@ public class Main {
                                         if (!usuariosEncontrados.isEmpty()) {
                                             usuario = usuariosEncontrados.get(0); // tomamos el primero
                                         } else {
-                                            System.out.println("⚠️ No se encontró ningún usuario con ese nombre.");
+                                            System.out.println(" No se encontró ningún usuario con ese nombre.");
                                         }
                                     } catch (UsuarioNoEncontradoException e) {
-                                        System.out.println("❌ Usuario no encontrado. Intente nuevamente.");
+                                        System.out.println(" Usuario no encontrado. Intente nuevamente.");
                                     }
                                 }
 
                                 while (recurso == null) {
-                                    System.out.print("📘 Ingrese el título del recurso: ");
+                                    System.out.print(" Ingrese el título del recurso: ");
                                     String titulo = consola.leerTexto();
-
                                     try {
                                         recurso = gestorRecursos.buscarRecursoPorTitulo(titulo);
                                     } catch (RecursoNoDisponibleException e) {
-                                        System.out.println("❌ Recurso no disponible. Intente con otro título.");
+                                        System.out.println(" Recurso no disponible. Intente con otro título.");
                                     }
+
                                 }
 
                                 try {
@@ -168,7 +169,7 @@ public class Main {
                                 RecursoDigital recurso = null;
 
                                 while (usuario == null) {
-                                    System.out.print("📛 Ingrese el nombre del usuario: ");
+                                    System.out.print(" Ingrese el nombre del usuario: ");
                                     String nombreUsuario = consola.leerTexto();
 
                                     try {
@@ -176,35 +177,30 @@ public class Main {
                                         if (!usuariosEncontrados.isEmpty()) {
                                             usuario = usuariosEncontrados.get(0); // tomamos el primero
                                         } else {
-                                            System.out.println("⚠️ No se encontró ningún usuario con ese nombre.");
+                                            System.out.println(" No se encontró ningún usuario con ese nombre.");
                                         }
                                     } catch (UsuarioNoEncontradoException e) {
-                                        System.out.println("❌ Usuario no encontrado. Intente nuevamente.");
+                                        System.out.println(" Usuario no encontrado. Intente nuevamente.");
                                     }
                                 }
 
-                                System.out.print("📘 Ingrese el título del recurso a devolver: ");
+                                System.out.print(" Ingrese el título del recurso a devolver: ");
                                 String titulo = consola.leerTexto();
 
                                 try {
                                     recurso = gestorRecursos.buscarRecursoPorTitulo(titulo);
-                                    if (recurso == null) {
-                                        System.out.println("⚠️ Recurso no encontrado.");
-                                        break;
-                                    }
                                     gestorPrestamos.devolverRecurso(usuario, recurso);
                                 } catch (RecursoNoDisponibleException e) {
-                                    System.out.println(e.getMessage());
-                                } catch (Exception e) {
-                                    System.out.println("⚠️ Ocurrió un error al devolver el recurso: " + e.getMessage());
+                                    System.out.println(" Recurso no disponible. Intente nuevamente.");
                                 }
+
                             }
                             case 3 -> gestorPrestamos.mostrarPrestamosActivos();
                             case 4 -> {
                                 System.out.println("↩️ Volviendo al menú principal...");
                                 salirPrestamos = true;
                             }
-                            default -> System.out.println("⚠️ Opción inválida.");
+                            default -> System.out.println(" Opción inválida.");
                         }
                     }
                 }
@@ -218,7 +214,7 @@ public class Main {
                         switch (opcionReserva) {
 
                             case 1 -> {
-                                System.out.print("📛 Ingrese el nombre del usuario: ");
+                                System.out.print(" Ingrese el nombre del usuario: ");
                                 String nombreUsuario = consola.leerTexto();
                                 Usuario usuario = null;
                                 try {
@@ -226,15 +222,15 @@ public class Main {
                                     if (!usuariosEncontrados.isEmpty()) {
                                         usuario = usuariosEncontrados.get(0);
                                     } else {
-                                        System.out.println("⚠️ No se encontró el usuario.");
+                                        System.out.println(" No se encontró el usuario.");
                                         break;
                                     }
                                 } catch (UsuarioNoEncontradoException e) {
-                                    System.out.println("❌ Usuario no encontrado.");
+                                    System.out.println(" Usuario no encontrado.");
                                     break;
                                 }
 
-                                System.out.print("📘 Ingrese el título del recurso a reservar: ");
+                                System.out.print(" Ingrese el título del recurso a reservar: ");
                                 String titulo = consola.leerTexto();
                                 RecursoDigital recurso = null;
                                 try {
@@ -242,9 +238,9 @@ public class Main {
 
                                     gestorReservas.agregarReserva(usuario, recurso);
                                 } catch (RecursoNoDisponibleException e) {
-                                    System.out.println("❌ Recurso no disponible.");
+                                    System.out.println(" Recurso no disponible.");
                                 } catch (Exception e) {
-                                    System.out.println("⚠️ Error: " + e.getMessage());
+                                    System.out.println("  Error: " + e.getMessage());
                                 }
                             }
 
@@ -252,7 +248,7 @@ public class Main {
                                 gestorReservas.mostrarReservas();
                             }
                             case 3 -> {
-                                System.out.print("📛 Ingrese el nombre del usuario: ");
+                                System.out.print(" Ingrese el nombre del usuario: ");
                                 String nombreUsuarioCancelar = consola.leerTexto();
                                 Usuario usuarioCancelar = null;
                                 try {
@@ -260,36 +256,36 @@ public class Main {
                                     if (!usuariosEncontradosCancelar.isEmpty()) {
                                         usuarioCancelar = usuariosEncontradosCancelar.get(0);
                                     } else {
-                                        System.out.println("⚠️ No se encontró el usuario.");
+                                        System.out.println(" No se encontró el usuario.");
                                         break;
                                     }
                                 } catch (UsuarioNoEncontradoException e) {
-                                    System.out.println("❌ Usuario no encontrado.");
+                                    System.out.println(" Usuario no encontrado.");
                                     break;
                                 }
 
-                                System.out.print("📘 Ingrese el título del recurso a cancelar: ");
+                                System.out.print(" Ingrese el título del recurso a cancelar: ");
                                 String tituloCancelar = consola.leerTexto();
                                 RecursoDigital recursoCancelar = null;
                                 try {
                                     recursoCancelar = gestorRecursos.buscarRecursoPorTitulo(tituloCancelar);
                                     gestorReservas.cancelarReserva(usuarioCancelar, recursoCancelar);
                                 } catch (RecursoNoDisponibleException e) {
-                                    System.out.println("❌ Recurso no disponible.");
+                                    System.out.println(" Recurso no disponible.");
                                 } catch (Exception e) {
-                                    System.out.println("⚠️ Error: " + e.getMessage());
+                                    System.out.println(" Error: " + e.getMessage());
                                 }
                             }
                             case 4 -> {
                                 System.out.println("↩️ Volviendo al menú principal...");
                                 salirReservas = true;
                             }
-                            default -> System.out.println("⚠️ Opción inválida.");
+                            default -> System.out.println("Opción inválida.");
                         }
                     }
                 }
                 case 5-> salir = true;
-                default -> System.out.println("⚠️ Opción incorrecta ⚠️. Intente de nuevo.");
+                default -> System.out.println(" Opción incorrecta . Intente de nuevo.");
             }
         }
     }

@@ -59,10 +59,10 @@ public class Reserva implements Comparable <Reserva>{
 
     @Override
     public String toString() {
-        return "📌 Reserva:\n" +
-                "👤 Usuario: " + usuario.getNombre() + "\n" +
-                "📘 Recurso: " + recurso.getTitulo() + "\n" +
-                "📅 Fecha: " + fechaReserva + "\n" +
-                "⭐ Prioridad: " + prioridad;
+        return "------RESERVA------\n" +
+                "Usuario: " + usuario.getNombre() + "\n" +
+                "Recurso: " + recurso.getTitulo() + "\n" +
+                "Fecha: " + fechaReserva + "\n" +
+                "Prioridad: " + prioridad;
     }
 }

@@ -26,7 +26,7 @@ public class Libro extends RecursoDigital implements IRecursoDigital {
 
     @Override
     public String toString() {
-        return "\uD83D\uDCD8  LIBRO\n" +
+        return "------LIBRO------\n" +
                 "ID: " + getId() +
                 "\nTítulo: " + getTitulo() +
                 "\nEstado: " + getEstado() +

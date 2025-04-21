@@ -38,24 +38,27 @@ public class GestorReservas {
             if (reserva.getRecurso().equals(recurso) && reserva.getUsuario().equals(usuario)) {
                 colaReservas.remove(reserva);
                 recurso.setEstado(RecursoDigital.TipoEstado.DISPONIBLE);
-                System.out.println("                 ");
+                System.out.println(" Verificando Reserva.... ");
+                System.out.println("                     ");
+                System.out.println(reserva);
+                System.out.println("                     ");
                 System.out.println("✅ Reserva cancelada para " + usuario.getNombre() + " del recurso " + recurso.getTitulo());
                 String mensaje = "El recurso ha sido cancelado correctamente.";
                 notificador.enviarNotificacion(mensaje, usuario);
                 return;
             }
         }
-        System.out.println("⚠️ No se encontró la reserva para este usuario y recurso.");
+        System.out.println("No se encontró la reserva para este usuario y recurso.");
     }
 
 
     public void mostrarReservas() {
         if (colaReservas.isEmpty()) {
-            System.out.println("⚠️ No hay reservas.");
+            System.out.println("No hay reservas.");
         } else {
-            System.out.println("🔖 Listado de reservas:");
+            System.out.println(" Listado de reservas:");
             for (Reserva reserva : colaReservas) {
-                System.out.println("-------------------");
+                System.out.println("           ");
                 System.out.println(reserva);
             }
         }

@@ -20,10 +20,10 @@ public class GestorUsuario {
     public void agregarUsuarioDesdeConsola() {
         System.out.println("\n ******CREAR NUEVO USUARIO******");
 
-        System.out.print("👤 Ingresar nombre: ");
+        System.out.print(" Ingresar nombre: ");
         String nombre = scanner.nextLine();
 
-        System.out.print("📧 Ingresar email: ");
+        System.out.print(" Ingresar email: ");
         String email = scanner.nextLine();
 
         int id = usuarios.size() + 1;
@@ -37,9 +37,9 @@ public class GestorUsuario {
 
     public void mostrarUsuarios() {
         if (usuarios.isEmpty()) {
-            System.out.println("⚠️ No hay usuarios registrados.");
+            System.out.println(" No hay usuarios registrados.");
         } else {
-            System.out.println("👥 Lista de usuarios:");
+            System.out.println("Lista de usuarios:");
             for (Usuario u : usuarios) {
                 System.out.println("-------------------------");
                 System.out.println(u);
@@ -50,7 +50,7 @@ public class GestorUsuario {
     public List<Usuario> buscarPorNombre(String nombre) throws UsuarioNoEncontradoException {
         List<Usuario> encontrados = usuariosPorNombre.getOrDefault(nombre, new ArrayList<>());
         if (encontrados.isEmpty()) {
-            throw new UsuarioNoEncontradoException("⚠️ No se encontraron usuarios con el nombre: " + nombre);
+            throw new UsuarioNoEncontradoException(" No se encontraron usuarios con el nombre: " + nombre);
         }
         return encontrados;
     }

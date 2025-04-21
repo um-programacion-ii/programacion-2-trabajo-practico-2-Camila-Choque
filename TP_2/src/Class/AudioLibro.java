@@ -25,12 +25,12 @@ public class AudioLibro extends RecursoDigital implements IRecursoDigital {
 
     @Override
     public String toString() {
-        return "\uD83C\uDFA7  AUDIOLIBRO\n" +
+        return "------AUDIOLIBRO------" +
                 "ID: " + getId() +
-                "\nTítulo: " + getTitulo() +
-                "\nAutor: " + getAutor() +
-                "\nEstado: " + getEstado() +
-                "\nDuración: " + duracionMinutos + " minutos";
+                "Título: " + getTitulo() +
+                "Autor: " + getAutor() +
+                "Estado: " + getEstado() +
+                "Duración: " + duracionMinutos + " minutos";
     }
 
 }

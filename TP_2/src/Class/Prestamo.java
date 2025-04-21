@@ -51,10 +51,10 @@ public class Prestamo {
     }
 
     public String toString() {
-        return "📄 Préstamo:\n" +
-                "👤 Usuario: " + usuario.getNombre() + "\n" +
-                "📚 Recurso: " + recurso.getTitulo() + "\n" +
-                "📅 Fecha de préstamo: " + fechaPrestamo + "\n" +
-                "📅 Fecha estimada de devolución: " + fechaDevolucion;
+        return "------PRESTAMO------\n" +
+                "Usuario: " + usuario.getNombre() + "\n" +
+                "Recurso: " + recurso.getTitulo() + "\n" +
+                "Fecha de préstamo: " + fechaPrestamo + "\n" +
+                "Fecha estimada de devolución: " + fechaDevolucion;
     }
 }
