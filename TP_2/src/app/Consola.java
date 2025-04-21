@@ -16,7 +16,8 @@ public class Consola {
         System.out.println("                                 ");
         System.out.println("1. Usuarios");
         System.out.println("2. Recursos");
-        System.out.println("3. Salir");
+        System.out.println("3. Prestamos");
+        System.out.println("4. Salir");
 
     }
 
@@ -41,6 +42,15 @@ public class Consola {
         System.out.println("8. Volver al menú principal");
         System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
     }
+    public void mostrarMenuPrestamos() {
+        System.out.println("\n🔁 **** MENÚ DE PRÉSTAMOS ****");
+        System.out.println("1. Realizar préstamo");
+        System.out.println("2. Devolver recurso");
+        System.out.println("3. Mostrar todos los préstamos");
+        System.out.println("4. Volver al menú principal");
+        System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
+    }
+
 
     public int leerOpcion() {
         try {
