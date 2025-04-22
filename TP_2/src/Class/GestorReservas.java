@@ -11,16 +11,19 @@ public class GestorReservas {
 
     private final ServicioNotificaciones notificador;
     private final GestorNotificaciones gestorNotificaciones;
+    private final GestorUsuario gestorUsuario;
 
-    public GestorReservas(ServicioNotificaciones notificador, GestorNotificaciones gestorNotificaciones) {
+    public GestorReservas(ServicioNotificaciones notificador, GestorNotificaciones gestorNotificaciones, GestorUsuario gestorUsuario) {
         this.notificador = notificador;
         this.gestorNotificaciones = gestorNotificaciones;
+        this.gestorUsuario = gestorUsuario;
     }
 
 
     public void agregarReserva(Usuario usuario, RecursoDigital recurso) {
         Reserva reserva = new Reserva(usuario, recurso, LocalDate.now(), contadorPrioridad++);
         colaReservas.add(reserva);
+        gestorUsuario.incrementarActividad(usuario);
         recurso.setEstado(RecursoDigital.TipoEstado.RESERVADO);
         System.out.println("                 ");
         System.out.println("✅ Reserva registrada con prioridad " + reserva.getPrioridad() + " para " + usuario.getNombre() + " del recurso " + recurso.getTitulo());
@@ -37,6 +40,7 @@ public class GestorReservas {
         for (Reserva reserva : colaReservas) {
             if (reserva.getRecurso().equals(recurso) && reserva.getUsuario().equals(usuario)) {
                 colaReservas.remove(reserva);
+                gestorUsuario.incrementarActividad(usuario);
                 recurso.setEstado(RecursoDigital.TipoEstado.DISPONIBLE);
                 System.out.println(" Verificando Reserva.... ");
                 System.out.println("                     ");

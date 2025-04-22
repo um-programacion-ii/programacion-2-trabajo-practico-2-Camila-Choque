@@ -9,6 +9,8 @@ import Exceptions.UsuarioNoEncontradoException;
 public class GestorUsuario {
     private ArrayList<Usuario> usuarios;
     private Map<String, List<Usuario>> usuariosPorNombre = new HashMap<>();
+    private Map<Usuario, Integer> actividadUsuarios = new HashMap<>();
+
     private Scanner scanner;
 
     public GestorUsuario() {
@@ -41,7 +43,7 @@ public class GestorUsuario {
         } else {
             System.out.println("Lista de usuarios:");
             for (Usuario u : usuarios) {
-                System.out.println("-------------------------");
+                System.out.println("                      ");
                 System.out.println(u);
             }
         }
@@ -58,4 +60,17 @@ public class GestorUsuario {
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
     }
+
+    //REPORTE
+    public void incrementarActividad(Usuario usuario) {
+        actividadUsuarios.put(usuario, actividadUsuarios.getOrDefault(usuario, 0) + 1);
+    }
+    public void reporteUsuariosMasActivos() {
+        System.out.println("📊 Reporte de usuarios más activos (préstamos + reservas):");
+
+        actividadUsuarios.entrySet().stream()
+                .sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
+                .forEach(entry -> System.out.println("Usuario: " + entry.getKey().getNombre() + " | Actividad total: " + entry.getValue()));
+    }
+
 }

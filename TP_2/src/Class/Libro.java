@@ -7,13 +7,10 @@ public class Libro extends RecursoDigital implements IRecursoDigital {
     private int numeroPaginas;
 
     //CONSTRUCTOR
-
-
     public Libro(int id, String titulo, TipoEstado estado, String autor, CategoriaRecurso categoria, int numeroPaginas) {
         super(id, titulo, estado, autor, categoria);
         this.numeroPaginas = numeroPaginas;
     }
-
     //GETTER
     public int getNumeroPaginas() {
         return numeroPaginas;

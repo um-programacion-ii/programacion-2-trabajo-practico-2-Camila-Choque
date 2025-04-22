@@ -13,7 +13,7 @@ public class Prestamo {
         this.usuario = usuario;
         this.recurso = recurso;
         this.fechaPrestamo = fechaPrestamo;
-        this.fechaDevolucion = null;
+        this.fechaDevolucion = fechaPrestamo.plusDays(7);;
     }
 
     //GETTER
@@ -57,4 +57,6 @@ public class Prestamo {
                 "Fecha de préstamo: " + fechaPrestamo + "\n" +
                 "Fecha estimada de devolución: " + fechaDevolucion;
     }
+
+
 }

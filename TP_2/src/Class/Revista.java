@@ -25,12 +25,12 @@ public class Revista extends RecursoDigital implements IRecursoDigital {
 
     @Override
     public String toString() {
-        return "------REVISTA------" +
+        return "------REVISTA------\n" +
                 "ID: " + getId() +
-                "Título: " + getTitulo() +
-                "Autor: " + getAutor() +
-                "Estado: " + getEstado() +
-                "Edición: " + numeroEdicion;
+                "\nTítulo: " + getTitulo() +
+                "\nAutor: " + getAutor() +
+                "\nEstado: " + getEstado() +
+                "\nEdición: " + numeroEdicion;
     }
 
 }

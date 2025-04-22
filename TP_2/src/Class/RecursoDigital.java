@@ -13,7 +13,6 @@ public abstract class RecursoDigital implements IRecursoDigital {
 
 
     //CONSTRUCTOR
-
     public RecursoDigital(int id, String titulo, TipoEstado estado, String autor, CategoriaRecurso categoria) {
         this.id = id;
         this.titulo = titulo;
