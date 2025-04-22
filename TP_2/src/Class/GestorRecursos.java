@@ -1,19 +1,19 @@
 package Class;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.List;
-import java.util.Collections;
+import java.util.*;
+
 import Enum.CategoriaRecurso;
 import Exceptions.RecursoNoDisponibleException;
 
 
 public class GestorRecursos {
-    private ArrayList<RecursoDigital> recursos;
+    private ArrayList<RecursoDigital> recursos =  new ArrayList<>();
     private Scanner scanner;
+    private Map<CategoriaRecurso, Integer> contadorPorCategoria = new HashMap<>();
+
 
     public GestorRecursos() {
-        recursos = new ArrayList<>();
         scanner = new Scanner(System.in);
+
     }
 
     public void crearRecursoDesdeConsola() {
@@ -61,6 +61,7 @@ public class GestorRecursos {
 
 
         recursos.add(nuevo);
+        contadorPorCategoria.put(categoria, contadorPorCategoria.getOrDefault(categoria, 0) + 1);
         System.out.println("✅ Recurso creado exitosamente.");
     }
 
@@ -88,9 +89,6 @@ public class GestorRecursos {
                 .orElseThrow(() -> new RecursoNoDisponibleException("No se encontró un recurso con el título: " + tituloBuscado));
     }
 
-
-
-
     //Se aprendio a utilizar map con chatGPT
     public void buscarPorCategoria(String categoriaBuscada) {
         List<RecursoDigital> encontrados = recursos.stream()
@@ -102,7 +100,7 @@ public class GestorRecursos {
         } else {
             System.out.println(" Recursos encontrados en la categoría " + categoriaBuscada + ":");
             for (RecursoDigital r : encontrados) {
-                System.out.println("-------------------------");
+                System.out.println("                       ");
                 System.out.println(r);
             }
         }
@@ -160,6 +158,14 @@ public class GestorRecursos {
         }
         if (!hayAudioLibros) System.out.println(" No hay audiolibros disponibles.");
     }
+    //REPORTES
+    public void mostrarEstadisticasPorCategoria() {
+        System.out.println("📊 Recursos creados por categoría:");
+        for (Map.Entry<CategoriaRecurso, Integer> entry : contadorPorCategoria.entrySet()) {
+            System.out.println("• " + entry.getKey() + ": " + entry.getValue() + " recurso(s)");
+        }
+    }
+
 
     /*
     private void prestarRecurso(RecursoDigital recurso) throws RecursoNoDisponibleException {

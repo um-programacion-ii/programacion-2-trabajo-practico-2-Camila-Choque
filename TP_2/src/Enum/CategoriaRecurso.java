@@ -1,7 +1,8 @@
 package Enum;
 
 public enum CategoriaRecurso {
-    Libro,
-    Revista,
-    AudioLibro
+    Fantasia,
+    Terror,
+    Historia,
+    Romance
 }

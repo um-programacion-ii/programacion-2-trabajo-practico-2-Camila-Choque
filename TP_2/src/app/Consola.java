@@ -12,9 +12,7 @@ public class Consola {
     }
 
     public void mostrarMenuPrincipal() {
-        System.out.println("----------------------------------------");
-        System.out.println("-----------BIBLIOTECA DIGITAL-----------");
-        System.out.println("----------------------------------------");
+
         System.out.println("\n\uD83C\uDF1F ******* MENÚ PRINCIPAL ******* \uD83C\uDF1F ");
         System.out.println("                                 ");
         System.out.println("1. Usuarios");
@@ -30,7 +28,8 @@ public class Consola {
         System.out.println("1. Ver usuarios");
         System.out.println("2. Crear nuevo usuario");
         System.out.println("3. Buscar usuario por nombre");
-        System.out.println("4. Volver al menú principal");
+        System.out.println("4. Reporte usuarios mas activos");
+        System.out.println("5. Volver al menú principal");
         System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
     }
 
@@ -39,10 +38,11 @@ public class Consola {
         System.out.println("1. Ver todos los recursos");
         System.out.println("2. Crear nuevo recurso");
         System.out.println("3. Buscar recurso por título");
-        System.out.println("4. Buscar por categoría");
+        System.out.println("4. Buscar por categoría (Fantasia,Terror,Historia,Romance)");
         System.out.println("5. Ordenar recursos por título");
         System.out.println("6. Mostrar categorías disponibles");
-        System.out.println("7. Volver al menú principal");
+        System.out.println("7. Estadistica de categorias creadas");
+        System.out.println("8. Volver al menú principal");
         System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
     }
     public void mostrarMenuPrestamos() {
@@ -50,7 +50,8 @@ public class Consola {
         System.out.println("1. Realizar préstamo");
         System.out.println("2. Devolver recurso");
         System.out.println("3. Mostrar todos los préstamos");
-        System.out.println("4. Volver al menú principal");
+        System.out.println("4. Reporte recurso mas prestado");
+        System.out.println("5. Volver al menú principal");
         System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
     }
 

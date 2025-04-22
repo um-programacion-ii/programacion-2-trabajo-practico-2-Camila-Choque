@@ -36,8 +36,8 @@ public class Main {
 
         ServicioNotificaciones email = new ServicioNotificacionesEmail();
         ServicioNotificaciones sms = new ServicioNotificacionesSMS();
-        GestorPrestamos gestorPrestamos = new GestorPrestamos(sms, gestorNotificaciones);
-        GestorReservas gestorReservas = new GestorReservas(email, gestorNotificaciones);
+        GestorPrestamos gestorPrestamos = new GestorPrestamos(sms, gestorNotificaciones,gestorUsuario);
+        GestorReservas gestorReservas = new GestorReservas(email, gestorNotificaciones,gestorUsuario);
 
 
         List<Usuario> usuarios = new ArrayList<>();
@@ -74,8 +74,8 @@ public class Main {
                                 System.out.println(e.getMessage());
                             }
                         }
-
-                        case 4 -> System.out.println("↩️ Volviendo al menú principal...");
+                        case 4 -> gestorUsuario.reporteUsuariosMasActivos();
+                        case 5 -> System.out.println("↩️ Volviendo al menú principal...");
                         default -> System.out.println("  Opción incorrecta.");
                     }
                 }
@@ -114,7 +114,8 @@ public class Main {
                         }
                         case 6 -> gestorRecursos.mostrarCategoriasDisponibles();
 
-                        case 7 -> System.out.println("↩️ Volviendo al menú principal...");
+                        case 7 -> {gestorRecursos.mostrarEstadisticasPorCategoria();}
+                        case 8-> System.out.println("↩️ Volviendo al menú principal...");
                         default -> System.out.println(" Opción inválida.");
                     }
                 }
@@ -175,7 +176,7 @@ public class Main {
                                     try {
                                         List<Usuario> usuariosEncontrados = gestorUsuario.buscarPorNombre(nombreUsuario);
                                         if (!usuariosEncontrados.isEmpty()) {
-                                            usuario = usuariosEncontrados.get(0); // tomamos el primero
+                                            usuario = usuariosEncontrados.get(0);
                                         } else {
                                             System.out.println(" No se encontró ningún usuario con ese nombre.");
                                         }
@@ -184,19 +185,25 @@ public class Main {
                                     }
                                 }
 
-                                System.out.print(" Ingrese el título del recurso a devolver: ");
-                                String titulo = consola.leerTexto();
+                                while (recurso == null) {
+                                    System.out.print(" Ingrese el título del recurso a devolver: ");
+                                    String titulo = consola.leerTexto();
 
-                                try {
-                                    recurso = gestorRecursos.buscarRecursoPorTitulo(titulo);
-                                    gestorPrestamos.devolverRecurso(usuario, recurso);
-                                } catch (RecursoNoDisponibleException e) {
-                                    System.out.println(" Recurso no disponible. Intente nuevamente.");
+                                    try {
+                                        recurso = gestorRecursos.buscarRecursoPorTitulo(titulo);
+                                    } catch (RecursoNoDisponibleException e) {
+                                        System.out.println(" Recurso no disponible o no existe. Intente nuevamente.");
+                                    }
                                 }
 
+                                gestorPrestamos.devolverRecurso(usuario, recurso);
                             }
+
                             case 3 -> gestorPrestamos.mostrarPrestamosActivos();
                             case 4 -> {
+                                gestorPrestamos.reporteRecursosMasPrestados();
+                            }
+                            case 5 -> {
                                 System.out.println("↩️ Volviendo al menú principal...");
                                 salirPrestamos = true;
                             }
