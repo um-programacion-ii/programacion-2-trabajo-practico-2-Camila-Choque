@@ -55,7 +55,7 @@ public class Consola {
     public void mostrarMenuReservas() {
         System.out.println("\n📚 ******* MENÚ RESERVAS ******* 📚");
         System.out.println("1. Crear nueva reserva");
-        System.out.println("2. Mostrar reservas en espera");
+        System.out.println("2. Mostrar reservas ");
         System.out.println("3. Cancelar reserva");
         System.out.println("4. Volver al menú principal");
         System.out.print("⚙️ Seleccionar una opción: ");

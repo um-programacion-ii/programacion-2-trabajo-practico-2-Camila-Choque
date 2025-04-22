@@ -1,16 +1,21 @@
 package Class;
 import Exceptions.RecursoNoDisponibleException;
+import Interfaces.ServicioNotificaciones;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 public class GestorPrestamos {
 
-    private List<Prestamo> prestamos;
+    private List<Prestamo> prestamos = new ArrayList<>();
+    private final ServicioNotificaciones notificador;
+    private final GestorNotificaciones gestorNotificaciones;
 
-    public GestorPrestamos() {
-        prestamos = new ArrayList<>();
+    public GestorPrestamos(ServicioNotificaciones notificador, GestorNotificaciones gestorNotificaciones) {
+        this.notificador = notificador;
+        this.gestorNotificaciones = gestorNotificaciones;
     }
+
 
 
     //PEDIR
@@ -21,11 +26,13 @@ public class GestorPrestamos {
         recurso.setEstado(RecursoDigital.TipoEstado.PRESTADO);
         Prestamo prestamo = new Prestamo(usuario, recurso, LocalDate.now());
         prestamos.add(prestamo);
-        System.out.println("✅ Recurso prestado exitosamente a " + usuario.getNombre());
         System.out.println("                     " );
         System.out.println("📋 Préstamo agregado: " );
         System.out.println(prestamo);
         System.out.println("📋 Total de préstamos: " + prestamos.size());
+        System.out.println("                     " );
+        String mensaje = "El recurso ha sido prestado correctamente.";
+        gestorNotificaciones.enviarNotificacion(usuario, mensaje, notificador);
     }
     //ACTIVOS
     public void mostrarPrestamosActivos() {
@@ -57,7 +64,10 @@ public class GestorPrestamos {
                     p.getFechaDevolucion() == null) {
                 recurso.setEstado(RecursoDigital.TipoEstado.DISPONIBLE);
                 p.setFechaDevolucion(LocalDate.now());
+                System.out.println("         ");
                 System.out.println("🔁 Recurso devuelto correctamente.");
+                String mensaje = "El recurso ha sido devuelto correctamente.";
+                notificador.enviarNotificacion(mensaje, usuario);
                 encontrado = true;
                 break;
             }
