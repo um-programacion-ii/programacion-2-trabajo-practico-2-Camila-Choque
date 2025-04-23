@@ -1,6 +1,5 @@
 package Class;
 import java.util.*;
-
 import Enum.CategoriaRecurso;
 import Exceptions.RecursoNoDisponibleException;
 
@@ -106,9 +105,7 @@ public class GestorRecursos {
         }
     }
 
-    public ArrayList<RecursoDigital> getRecursos() {
-        return recursos;
-    }
+
     private CategoriaRecurso asignarCategoriaDesdeConsola() {
         System.out.println(" Seleccione la categoría del recurso:");
         CategoriaRecurso[] categorias = CategoriaRecurso.values();

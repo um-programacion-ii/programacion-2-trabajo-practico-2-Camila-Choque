@@ -8,7 +8,7 @@ public class ServicioNotificacionesEmail implements ServicioNotificaciones {
     public void enviarNotificacion(String mensaje, Usuario usuario) {
         System.out.println("📧 Enviando email a " + usuario.getNombre() + ": " + mensaje);
     }
-
+/*
     public void notificacionurgencia(String mensaje, Usuario usuario, NivelUrgencia nivel) {
         String nivelStr = switch (nivel) {
             case INFO -> "INFO";
@@ -17,4 +17,6 @@ public class ServicioNotificacionesEmail implements ServicioNotificaciones {
         };
         System.out.println("[" + nivelStr + "] Enviando Email a " + usuario.getNombre() + ": " + mensaje);
     }
+
+ */
 }

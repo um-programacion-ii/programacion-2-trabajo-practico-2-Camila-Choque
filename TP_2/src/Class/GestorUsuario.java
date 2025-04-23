@@ -1,5 +1,4 @@
 package Class;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
@@ -73,4 +72,7 @@ public class GestorUsuario {
                 .forEach(entry -> System.out.println("Usuario: " + entry.getKey().getNombre() + " | Actividad total: " + entry.getValue()));
     }
 
+    public Map<Usuario, Integer> getActividadUsuarios() {
+        return actividadUsuarios;
+    }
 }

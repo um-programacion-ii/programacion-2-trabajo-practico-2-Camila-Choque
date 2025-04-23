@@ -3,7 +3,7 @@ import Interfaces.ServicioNotificaciones;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-//IMPLEMENTADO CON CHATGPT
+
 public class GestorNotificaciones {
     private final ExecutorService executor = Executors.newFixedThreadPool(4);
 

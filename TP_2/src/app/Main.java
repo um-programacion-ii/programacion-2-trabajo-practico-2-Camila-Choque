@@ -6,7 +6,6 @@ import  Servicios.ServicioNotificacionesSMS;
 import Interfaces.ServicioNotificaciones;
 import Class.GestorUsuario;
 import Class.GestorRecursos;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import Exceptions.UsuarioNoEncontradoException;
@@ -16,6 +15,7 @@ import Class.Prestamo;
 import Class.GestorReservas;
 import Servicios.AlertaDisponibilidad;
 import Servicios.AlertaVencimiento;
+import Class.GestorReportes;
 
 
 
@@ -39,6 +39,9 @@ public class Main {
         AlertaVencimiento alerta = new AlertaVencimiento(listaPrestamos, servicioNotificaciones);
 
         AlertaDisponibilidad alertaDisponibilidad = new AlertaDisponibilidad(gestorReservas.getColaReservas(), servicioNotificaciones);
+        List<Usuario> Usuarios = gestorUsuario.getUsuarios();
+        GestorReportes gestorReportes = new GestorReportes(gestorUsuario.getActividadUsuarios());
+        gestorReportes.reporteUsuariosSinActividad(Usuarios);
 
 
         boolean salir = false;
@@ -293,7 +296,27 @@ public class Main {
                         }
                     }
                 }
-                case 5-> salir = true;
+                //REPORTES
+                case 5 -> {
+                    boolean salirReportes = false;
+                    while (!salirReportes) {
+                        consola.mostrarMenuReportes();
+                        int opcionReporte = consola.leerOpcion();
+
+                        switch (opcionReporte) {
+                            case 1 -> {
+                                gestorReportes.reporteUsuariosSinActividad(gestorUsuario.getUsuarios());
+                            }
+                            case 2 -> gestorUsuario.reporteUsuariosMasActivos();
+                            case 3 -> {
+                                System.out.println("🔙 Volviendo al menú principal...");
+                                salirReportes = true;
+                            }
+                            default -> System.out.println(" Opción de reporte no válida.");
+                        }
+                    }
+                }
+                case 6-> salir = true;
                 default -> System.out.println(" Opción incorrecta . Intente de nuevo.");
             }
         }

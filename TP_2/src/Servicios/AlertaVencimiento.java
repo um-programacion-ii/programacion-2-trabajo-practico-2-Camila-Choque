@@ -3,9 +3,9 @@ package Servicios;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
-
 import Class.Prestamo;
 import Interfaces.ServicioNotificaciones;
+
  //IMPORTANTE: Para que llegue la notificacion se debe cambiar la fecha de devolucion de prestamos a 1 !!
 
 public class AlertaVencimiento {
