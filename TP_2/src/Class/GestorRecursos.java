@@ -74,7 +74,7 @@ public class GestorRecursos {
 
             System.out.println(" Lista de recursos:");
             for (RecursoDigital r : recursos) {
-                System.out.println("-------------------------");
+                System.out.println("               ");
                 System.out.println(r);
             }
         }
@@ -165,54 +165,5 @@ public class GestorRecursos {
             System.out.println("• " + entry.getKey() + ": " + entry.getValue() + " recurso(s)");
         }
     }
-
-
-    /*
-    private void prestarRecurso(RecursoDigital recurso) throws RecursoNoDisponibleException {
-        if (recurso.getEstado() != RecursoDigital.TipoEstado.DISPONIBLE) {
-            throw new RecursoNoDisponibleException(" El recurso '" + recurso.getTitulo() + "' no está disponible.");
-        }
-
-        recurso.setEstado(RecursoDigital.TipoEstado.PRESTADO);
-        System.out.println("✅ Recurso prestado exitosamente.");
-    }
-
-
-    public void prestarRecursoDesdeConsola() {
-        if (recursos.isEmpty()) {
-            System.out.println(" No hay recursos disponibles para prestar.");
-            return;
-        }
-        System.out.println(" Recursos disponibles para préstamo:");
-        List<RecursoDigital> disponibles = new ArrayList<>();
-
-        int index = 1;
-        for (RecursoDigital r : recursos) {
-            if (r.getEstado() == RecursoDigital.TipoEstado.DISPONIBLE) {
-                System.out.println(index + ". " + r.getTitulo());
-                disponibles.add(r);
-                index++;
-            }
-        }
-        if (disponibles.isEmpty()) {
-            System.out.println(" No hay recursos en estado disponible.");
-            return;
-        }
-        System.out.print("➡️ Seleccione el número del recurso que desea prestar: ");
-        int seleccion = scanner.nextInt();
-        scanner.nextLine();
-        if (seleccion < 1 || seleccion > disponibles.size()) {
-            System.out.println(" Selección inválida.");
-            return;
-        }
-        RecursoDigital recurso = disponibles.get(seleccion - 1);
-        try {
-            prestarRecurso(recurso);
-        } catch (RecursoNoDisponibleException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    */
-
 
 }

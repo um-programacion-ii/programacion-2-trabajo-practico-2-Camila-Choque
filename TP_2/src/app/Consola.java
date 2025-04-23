@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Consola {
 
-    //Se implemento con ChatGPT y se realizaron modificaciones personales
+
 
     private final Scanner scanner;
 
@@ -42,7 +42,8 @@ public class Consola {
         System.out.println("5. Ordenar recursos por título");
         System.out.println("6. Mostrar categorías disponibles");
         System.out.println("7. Estadistica de categorias creadas");
-        System.out.println("8. Volver al menú principal");
+        System.out.println("8. Notificacion: Alerta disponiblididad");
+        System.out.println("9. Volver al menú principal");
         System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
     }
     public void mostrarMenuPrestamos() {
@@ -51,7 +52,8 @@ public class Consola {
         System.out.println("2. Devolver recurso");
         System.out.println("3. Mostrar todos los préstamos");
         System.out.println("4. Reporte recurso mas prestado");
-        System.out.println("5. Volver al menú principal");
+        System.out.println("5. Notificacion: Alerta vencimiento");
+        System.out.println("6. Volver al menú principal");
         System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
     }
 

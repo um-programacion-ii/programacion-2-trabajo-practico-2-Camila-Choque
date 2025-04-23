@@ -14,35 +14,31 @@ import Exceptions.RecursoNoDisponibleException;
 import Class.GestorPrestamos;
 import Class.Prestamo;
 import Class.GestorReservas;
-import Class.GestorNotificaciones;
+import Servicios.AlertaDisponibilidad;
+import Servicios.AlertaVencimiento;
+
 
 
 public class Main {
-    private static Usuario usuarioActual;
 
-    public static Usuario getUsuarioActual() {
-        return usuarioActual;
-    }
 
-    public static void setUsuarioActual(Usuario usuarioActual) {
-        Main.usuarioActual = usuarioActual;
-    }
 
     public static void main(String[] args) {
         Consola consola = new Consola();
         GestorUsuario gestorUsuario = new GestorUsuario();
         GestorRecursos gestorRecursos = new GestorRecursos();
-        GestorNotificaciones gestorNotificaciones = new GestorNotificaciones();
 
         ServicioNotificaciones email = new ServicioNotificacionesEmail();
         ServicioNotificaciones sms = new ServicioNotificacionesSMS();
-        GestorPrestamos gestorPrestamos = new GestorPrestamos(sms, gestorNotificaciones,gestorUsuario);
-        GestorReservas gestorReservas = new GestorReservas(email, gestorNotificaciones,gestorUsuario);
+        ServicioNotificaciones servicioNotificaciones = new ServicioNotificacionesSMS();
+        GestorPrestamos gestorPrestamos = new GestorPrestamos(sms, gestorUsuario);
 
+        GestorReservas gestorReservas = new GestorReservas(email,gestorUsuario);
 
-        List<Usuario> usuarios = new ArrayList<>();
-        List<RecursoDigital> recursos = new ArrayList<>();
-        List<Prestamo> prestamos = new ArrayList<>();
+        List<Prestamo> listaPrestamos = gestorPrestamos.getListaDePrestamos();
+        AlertaVencimiento alerta = new AlertaVencimiento(listaPrestamos, servicioNotificaciones);
+
+        AlertaDisponibilidad alertaDisponibilidad = new AlertaDisponibilidad(gestorReservas.getColaReservas(), servicioNotificaciones);
 
 
         boolean salir = false;
@@ -114,8 +110,11 @@ public class Main {
                         }
                         case 6 -> gestorRecursos.mostrarCategoriasDisponibles();
 
-                        case 7 -> {gestorRecursos.mostrarEstadisticasPorCategoria();}
-                        case 8-> System.out.println("↩️ Volviendo al menú principal...");
+                        case 7 -> gestorRecursos.mostrarEstadisticasPorCategoria();
+                        case 8 ->
+                            alertaDisponibilidad.verificarDisponibilidad();
+
+                        case 9-> System.out.println("↩️ Volviendo al menú principal...");
                         default -> System.out.println(" Opción inválida.");
                     }
                 }
@@ -203,7 +202,10 @@ public class Main {
                             case 4 -> {
                                 gestorPrestamos.reporteRecursosMasPrestados();
                             }
-                            case 5 -> {
+                            case 5 ->
+                                alerta.verificarVencimientos();
+
+                            case 6-> {
                                 System.out.println("↩️ Volviendo al menú principal...");
                                 salirPrestamos = true;
                             }
