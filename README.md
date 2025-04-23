@@ -157,7 +157,7 @@ Desarrollar un sistema de gestión de biblioteca digital que implemente los cinc
 
    6- Salir:  Vuelve al menú principal.
 
-# 🔁 Reserva (Opciom 4)
+# 🔁 Reserva (Opcion 4)
 
    1- Crear reserva: Ingresar usuario y titulo de recurso, verifica y pasa el recurso a RESERVADO.
 
@@ -175,15 +175,18 @@ Desarrollar un sistema de gestión de biblioteca digital que implemente los cinc
 
    3- Salir:  Vuelve al menú principal.
 
+# 📋 Ejemplo de flujo completo
+Registro y prestamo
+  - Registrar usuario-> nombre: emmanuel, mail: emma10@gmail.com
+  - Registrar libro-> tipo: libro , titulo:Harry Potter , auto: J.K.Rowling, categoria: fantasia, cant.paginas:300
+  - Realizar prestamos-> usuario:emma, libro:Harry Potter
+  - Notificacion-> "Prestamos realizado con exito"
 
-
-
-
-       
-
-    
-
-
+Reserva y Devolucion: 
+  - Realizar reserva-> nombre: cami , titulo: Harry Potter ------>NOTA: Pasa a lista de espera
+  - Cancelar reserva-> nombre: emma , titulo:Harry Potter
+  - Notificacion-> Notificacion para cami: libro Harry Potter disponible
+  
 
 
 ## 📋 Requisitos Adicionales
