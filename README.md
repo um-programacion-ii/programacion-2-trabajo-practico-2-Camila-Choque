@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/tc38IXJF)
 # 📚 Trabajo Práctico: Sistema de Gestión de Biblioteca Digital (Java 21+)
 
 ## 📌 Objetivo General
@@ -5,7 +6,188 @@
 Desarrollar un sistema de gestión de biblioteca digital que implemente los cinco principios SOLID, programación orientada a objetos, y conceptos avanzados de Java. El sistema deberá manejar diferentes tipos de recursos digitales, préstamos, reservas, y notificaciones en tiempo real.
 
 ## 👨‍🎓 Información del Alumno
-- **Nombre y Apellido**: [Nombre y Apellido del Alumno]
+- **Nombre y Apellido**: Camila Choque
+  
+## 📘 Documentación del Sistema
+### 🧱 Componentes principales
+
+- Main: Punto de entrada principal del programa. Inicia el sistema y muestra el menú.
+- GestorUsuario: Se encarga de registrar, listar y gestionar los usuarios.
+- GestorRecursos: Permite crear, buscar y gestionar los recursos digitales.
+- ServicioNotificaciones: Interfaz que define el comportamiento de las notificaciones.
+- ServicioNotificacionesEmail / ServicioNotificacionesSMS: Implementaciones concretas del sistema de notificaciones.
+- Consola: Clase auxiliar para mostrar menús y recibir entrada del usuario.
+- GestorPrestamos: Administra el proceso de préstamo de recursos, controlando disponibilidad y fechas.
+- GestorReservas: Permite reservar recursos , almacenando las solicitudes pendientes.
+  ## 🔄 Flujo de trabajo del sistema
+ 1- Registro de usuarios:
+   - Al iniciar el sistema, el usuario debe registrarse proporcionando su nombre y correo electrónico. Esta información se
+         almacena para futuras  operaciones como préstamos o reservas.
+     
+2- Creación de recursos digitales:
+   - Un administrador (o usuario con permisos) puede crear registros de nuevos recursos indicando su título, tipo y estado de disponibilidad.
+     
+ 3- Préstamo de recursos:
+   - Un usuario registrado puede solicitar el préstamo de un recurso disponible. El sistema valida la disponibilidad, registra el préstamo y actualiza el estado del recurso.
+    
+4- Reservas de recursos:
+ - Si un recurso no está disponible, el usuario puede optar por reservarlo. El sistema agrega su solicitud a una lista de espera, y cuando el recurso se libera, se notifica automáticamente al siguiente usuario en la cola.
+   
+5- Notificaciones:
+   - Las acciones de préstamos o reservas disparan notificaciones automáticas (por email o SMS) para confirmar al usuario el estado de su solicitud.
+
+6- Interacción continua:
+   - El usuario puede realizar nuevas operaciones o salir del sistema en cualquier momento a través del menú principal.
+
+## 🚀 ¿Cómo ponerlo en funcionamiento?
+## ✅ Requisitos previos
+- Java 17 o superior instalado.
+- IDE recomendado: IntelliJ, Eclipse o Visual Studio Code.
+- [Opcional] Herramienta de compilación: Maven o Gradle.
+
+## ⚙️ Instrucciones detalladas de cómo ejecutar el proyecto
+1- Glonar el repositorio:
+
+    git clone git@github.com:um-programacion-ii/programacion-2-trabajo-practico-2-Camila-Choque.git
+    
+2- Navegar al directorio fuente:
+
+     cd TP_2/src
+    
+3- Compilar con el siguiente comando:
+
+    javac Class/*.java app/*.java
+    
+4- Ejecutar con el siguiente comando:
+
+    java app.Main
+
+## 🧪 ¿Cómo probar cada aspecto desarrollado?
+## 🧾 Funcionalidades implementadas
+   - ✔ Registro de usuario
+     
+     - Entrada esperada: Nombre, email.
+     - Resultado esperado: Usuario agregado con exito (lista).
+       
+   - ✔ Creación de recurso digital
+     
+     - Entrada esperada: Tipo de recurso,titulo,autor,categoria,cant.paginas/número de edición/minutos.
+     - Resultado esperado: Recurso añadido a la lista de recursos.
+       
+   - ✔ Préstamo de recurso
+     - El usuario ingresa su nombre.
+     - El usuario ingresa el titulo del recurso.
+     - El sistema actualiza el estado y envía notificación.
+   
+   - ✔ Reserva de recurso
+     - El usuario igresa su nombre.
+     - El usuario ingresa el titulo del recurso.
+     - El sistema actualiza el estado y envía notificación.
+         
+   - ✔ Alerta de vencimiento
+     - Se envia alerta y notificacion(1 dia antes del vencimiento).
+     - El usuario recibe la notificacion.
+     - El usuario puede renovar el prestamo.
+     - El sistema actualiza la fecha de devolucion.
+
+   - ✔ Reportes
+     - Usuario más activo.
+     - Usuario menos activo.
+     - Recurso más prestado(menu prestamos).
+     - Reporte de categorias creadas(menu recursos).
+
+## 🧪 Casos de prueba automatizados
+   - Creacion de Prestamo:
+     
+     ![Captura desde 2025-04-23 11-04-44](https://github.com/user-attachments/assets/6ca43013-4eb5-429e-8304-f4c24e230240)
+
+
+   - Alerta Vencimiento:
+
+     ![Captura desde 2025-04-23 11-03-05](https://github.com/user-attachments/assets/3de1c63e-3d36-4db8-a07c-073bfb488ae5)
+
+   - Renovacion:
+
+     ![Captura desde 2025-04-23 11-04-02](https://github.com/user-attachments/assets/93bc4124-0b9f-4034-a980-a0c55882b1b8)
+
+## Funcionalidades
+# 👤 Usuarios (Opcion 1)
+
+   1- Ver usuarios: Lista de usuarios.
+
+   2- Crear Usuario: Nombre y mail.
+   
+   3- Buscar usuario por nombre: Ingresar nombre e imprime los usuarios con ese nombre.
+   
+   4- Reporte usuarios más activos: Reporta los usuarios con más actividad.
+   
+   5- Salir: Vuelve al menú principal.
+
+# 📚 Recursos (Opcion 2)
+
+   1- Ver recursos: Lista de recursos.
+
+   2- Crear recurso: Tipo de recurso,titulo,autor,categoria,cant.paginas/número de edición/minutos.
+
+   3- Buscar por titulo: Ingresar titulo e imprime los recursos con ese titulo.
+
+   4- Buscar por categoria: Buscar recursos con la categoria fantasia,terror,historia y romance.
+
+   5- Ordenar recursos por titulos: Los ordena por titulo.
+
+   6- Mostrar categorias disponibles: Imprime los recursos con el estado DISPONIBLE.
+
+   7- Estadisticas de categorias creadas: Imprime las categorias con la cantidad de recursos.
+
+   8-Notificacion disponibilidad: Notifica sobre la disponibilidad de un libro
+
+   9- Salir:  Vuelve al menú principal.
+
+# 🔁 Prestamos(Opcion 3)
+
+   1- Realizar un prestamo: Ingresar usuario y titulo del recurso.
+
+   2- Devolver recurso: Ingresar usuario y titulo de recurso, verifica y pasa el recurso a DISPONIBLE.
+
+   3- Mostrar prestamos: Imprime lista de prestamos.
+
+   4- Reporte recursos mas prestamos: Imprime los recursos más prestamos con la cantidad de veces que estos fueron prestados.
+
+   5- Notificacion vencimiento: Notifica sobre el vencimiento y permite renovar el prestamo.
+
+   6- Salir:  Vuelve al menú principal.
+
+# 🔁 Reserva (Opcion 4)
+
+   1- Crear reserva: Ingresar usuario y titulo de recurso, verifica y pasa el recurso a RESERVADO.
+
+   2- Mostrar reservas: Imprime lista de reservas.
+
+   3- Cancelar reserva: Ingresar usuario y titulo de recurso, verifica y pasa el recurso a DISPONIBLE.
+
+   4- Salir:  Vuelve al menú principal.
+
+# 📈 Reportes (Opcion 5)
+
+   1-Reporte usuarios inactivos: Imprime los usuarios inactivos.
+
+   2- Reporte usuarios más activos: Usuarios con mayor activivdad.
+
+   3- Salir:  Vuelve al menú principal.
+
+# 📋 Ejemplo de flujo completo
+Registro y prestamo
+  - Registrar usuario-> nombre: emmanuel, mail: emma10@gmail.com
+  - Registrar libro-> tipo: libro , titulo:Harry Potter , auto: J.K.Rowling, categoria: fantasia, cant.paginas:300
+  - Realizar prestamos-> usuario:emma, libro:Harry Potter
+  - Notificacion-> "Prestamos realizado con exito"
+
+Reserva y Devolucion: 
+  - Realizar reserva-> nombre: cami , titulo: Harry Potter ------>NOTA: Pasa a lista de espera
+  - Cancelar reserva-> nombre: emma , titulo:Harry Potter
+  - Notificacion-> Notificacion para cami: libro Harry Potter disponible
+  
+
 
 ## 📋 Requisitos Adicionales
 

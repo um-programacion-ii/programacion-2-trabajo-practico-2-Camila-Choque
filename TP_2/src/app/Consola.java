@@ -1,0 +1,90 @@
+package app;
+import java.util.Scanner;
+
+public class Consola {
+
+
+
+    private final Scanner scanner;
+
+    public Consola() {
+        scanner = new Scanner(System.in);
+    }
+
+    public void mostrarMenuPrincipal() {
+
+        System.out.println("\n\uD83C\uDF1F ******* MENÚ PRINCIPAL ******* \uD83C\uDF1F ");
+        System.out.println("                                 ");
+        System.out.println("1. Usuarios");
+        System.out.println("2. Recursos");
+        System.out.println("3. Prestamos");
+        System.out.println("4. Reservas");
+        System.out.println("5. Reporte");
+        System.out.println("6. Salir");
+
+    }
+
+    public void mostrarMenuUsuarios() {
+        System.out.println("******* MENÚ USUARIOS *******");
+        System.out.println("1. Ver usuarios");
+        System.out.println("2. Crear nuevo usuario");
+        System.out.println("3. Buscar usuario por nombre");
+        System.out.println("4. Reporte usuarios mas activos");
+        System.out.println("5. Volver al menú principal");
+        System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
+    }
+
+    public void mostrarMenuRecursos() {
+        System.out.println(" ******* MENÚ RECURSOS *******");
+        System.out.println("1. Ver todos los recursos");
+        System.out.println("2. Crear nuevo recurso");
+        System.out.println("3. Buscar recurso por título");
+        System.out.println("4. Buscar por categoría (Fantasia,Terror,Historia,Romance)");
+        System.out.println("5. Ordenar recursos por título");
+        System.out.println("6. Mostrar categorías disponibles");
+        System.out.println("7. Estadistica de categorias creadas");
+        System.out.println("8. Notificacion: Alerta disponiblididad");
+        System.out.println("9. Volver al menú principal");
+        System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
+    }
+    public void mostrarMenuPrestamos() {
+        System.out.println("\n *******MENÚ PRÉSTAMOS ******* ");
+        System.out.println("1. Realizar préstamo");
+        System.out.println("2. Devolver recurso");
+        System.out.println("3. Mostrar todos los préstamos");
+        System.out.println("4. Reporte recurso mas prestado");
+        System.out.println("5. Notificacion: Alerta vencimiento");
+        System.out.println("6. Volver al menú principal");
+        System.out.print(" ⚙\uFE0F Seleccionar una opción: ");
+    }
+
+    public void mostrarMenuReservas() {
+        System.out.println("\n******* MENÚ RESERVAS ******* ");
+        System.out.println("1. Crear nueva reserva");
+        System.out.println("2. Mostrar reservas ");
+        System.out.println("3. Cancelar reserva");
+        System.out.println("4. Volver al menú principal");
+        System.out.print("⚙️ Seleccionar una opción: ");
+    }
+    public void mostrarMenuReportes() {
+        System.out.println("\n******* MENÚ REPORTES ******* ");
+        System.out.println("1. Reporte usuarios inactivos");
+        System.out.println("2. Reporte usuarios mas activos");
+        System.out.println("3. Volver al menú principal");
+        System.out.print("⚙️ Seleccionar una opción: ");
+    }
+
+    public int leerOpcion() {
+        try {
+            return Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+    public String leerTexto() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
+
+
+}
