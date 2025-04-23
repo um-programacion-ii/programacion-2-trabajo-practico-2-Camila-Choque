@@ -8,6 +8,7 @@ public class ServicioNotificacionesSMS implements ServicioNotificaciones {
     public void enviarNotificacion(String mensaje, Usuario usuario) {
         System.out.println("📱 Enviando SMS a " + usuario.getNombre() + ": " + mensaje);
     }
+    /*
     public void notificacionurgencia(String mensaje, Usuario usuario, NivelUrgencia nivel) {
         String nivelStr = switch (nivel) {
             case INFO -> "INFO";
@@ -16,5 +17,7 @@ public class ServicioNotificacionesSMS implements ServicioNotificaciones {
         };
         System.out.println("[" + nivelStr + "] Enviando SMS a " + usuario.getNombre() + ": " + mensaje);
     }
+
+     */
 
 }

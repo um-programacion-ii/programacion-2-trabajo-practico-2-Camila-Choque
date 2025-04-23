@@ -19,7 +19,8 @@ public class Consola {
         System.out.println("2. Recursos");
         System.out.println("3. Prestamos");
         System.out.println("4. Reservas");
-        System.out.println("5. Salir");
+        System.out.println("5. Reporte");
+        System.out.println("6. Salir");
 
     }
 
@@ -63,6 +64,13 @@ public class Consola {
         System.out.println("2. Mostrar reservas ");
         System.out.println("3. Cancelar reserva");
         System.out.println("4. Volver al menú principal");
+        System.out.print("⚙️ Seleccionar una opción: ");
+    }
+    public void mostrarMenuReportes() {
+        System.out.println("\n******* MENÚ REPORTES ******* ");
+        System.out.println("1. Reporte usuarios inactivos");
+        System.out.println("2. Reporte usuarios mas activos");
+        System.out.println("3. Volver al menú principal");
         System.out.print("⚙️ Seleccionar una opción: ");
     }
 

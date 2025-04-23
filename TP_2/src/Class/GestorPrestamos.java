@@ -1,7 +1,6 @@
 package Class;
 import Exceptions.RecursoNoDisponibleException;
 import Interfaces.ServicioNotificaciones;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,11 +21,10 @@ public class GestorPrestamos {
         this.gestorUsuario = gestorUsuario;
         this.prestamos = new ArrayList<>();
     }
-    //
+
     public List<Prestamo> getListaDePrestamos() {
         return prestamos;
     }
-
 
     public void prestarRecurso(Usuario usuario, RecursoDigital recurso) throws RecursoNoDisponibleException {
         synchronized (this) {
@@ -98,7 +96,7 @@ public class GestorPrestamos {
             }
 
             if (!encontrado) {
-                System.out.println("⚠️ No se encontró un préstamo activo para ese recurso.");
+                System.out.println(" No se encontró un préstamo activo para ese recurso.");
             }
         }
     }
@@ -111,7 +109,5 @@ public class GestorPrestamos {
                 .sorted((entry1, entry2) -> Integer.compare(entry2.getValue(), entry1.getValue()))
                 .forEach(entry -> System.out.println("Recurso: " + entry.getKey().getTitulo() + " | Veces prestado: " + entry.getValue()));
     }
-
-
 
 }
