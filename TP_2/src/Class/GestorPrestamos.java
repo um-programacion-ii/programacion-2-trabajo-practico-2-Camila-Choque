@@ -8,19 +8,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 public class GestorPrestamos {
 
     private List<Prestamo> prestamos = new ArrayList<>();
     private final ServicioNotificaciones notificador;
-    private final GestorNotificaciones gestorNotificaciones;
+
     private final GestorUsuario gestorUsuario;
     private Map<RecursoDigital, Integer> contadorRecursosPrestados = new HashMap<>();
 
-    public GestorPrestamos(ServicioNotificaciones notificador,  GestorNotificaciones gestorNotificaciones,GestorUsuario gestorUsuario) {
+    public GestorPrestamos(ServicioNotificaciones notificador,GestorUsuario gestorUsuario) {
         this.notificador = notificador;
-        this.gestorNotificaciones = gestorNotificaciones;
         this.gestorUsuario = gestorUsuario;
+        this.prestamos = new ArrayList<>();
     }
+    //
+    public List<Prestamo> getListaDePrestamos() {
+        return prestamos;
+    }
+
 
     public void prestarRecurso(Usuario usuario, RecursoDigital recurso) throws RecursoNoDisponibleException {
         synchronized (this) {
@@ -97,9 +103,7 @@ public class GestorPrestamos {
         }
     }
 
-    public List<Prestamo> getPrestamos() {
-        return prestamos;
-    }
+    //REPORTES
     public void reporteRecursosMasPrestados() {
         System.out.println("📊 Reporte de los recursos más prestados:");
 
@@ -107,4 +111,7 @@ public class GestorPrestamos {
                 .sorted((entry1, entry2) -> Integer.compare(entry2.getValue(), entry1.getValue()))
                 .forEach(entry -> System.out.println("Recurso: " + entry.getKey().getTitulo() + " | Veces prestado: " + entry.getValue()));
     }
+
+
+
 }

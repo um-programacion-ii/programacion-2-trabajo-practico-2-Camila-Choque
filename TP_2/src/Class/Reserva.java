@@ -9,8 +9,6 @@ public class Reserva implements Comparable <Reserva>{
     private int prioridad;
 
     //CONSTRUCTOR
-
-
     public Reserva(Usuario usuario, RecursoDigital recurso, LocalDate fechaReserva, int prioridad) {
         this.usuario = usuario;
         this.recurso = recurso;
@@ -54,7 +52,7 @@ public class Reserva implements Comparable <Reserva>{
 
     @Override
     public int compareTo(Reserva otra) {
-        return this.fechaReserva.compareTo(otra.getFechaReserva()); // Más antigua = mayor prioridad
+        return this.fechaReserva.compareTo(otra.getFechaReserva());
     }
 
     @Override

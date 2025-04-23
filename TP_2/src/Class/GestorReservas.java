@@ -10,12 +10,10 @@ public class GestorReservas {
     private int contadorPrioridad = 1;
 
     private final ServicioNotificaciones notificador;
-    private final GestorNotificaciones gestorNotificaciones;
     private final GestorUsuario gestorUsuario;
 
-    public GestorReservas(ServicioNotificaciones notificador, GestorNotificaciones gestorNotificaciones, GestorUsuario gestorUsuario) {
+    public GestorReservas(ServicioNotificaciones notificador, GestorUsuario gestorUsuario) {
         this.notificador = notificador;
-        this.gestorNotificaciones = gestorNotificaciones;
         this.gestorUsuario = gestorUsuario;
     }
 
@@ -37,6 +35,7 @@ public class GestorReservas {
 
 
     public void cancelarReserva(Usuario usuario, RecursoDigital recurso) {
+        boolean reservaCancelada = false;
         for (Reserva reserva : colaReservas) {
             if (reserva.getRecurso().equals(recurso) && reserva.getUsuario().equals(usuario)) {
                 colaReservas.remove(reserva);
@@ -49,11 +48,18 @@ public class GestorReservas {
                 System.out.println("✅ Reserva cancelada para " + usuario.getNombre() + " del recurso " + recurso.getTitulo());
                 String mensaje = "El recurso ha sido cancelado correctamente.";
                 notificador.enviarNotificacion(mensaje, usuario);
-                return;
+                reservaCancelada = true;
+                break;
             }
         }
-        System.out.println("No se encontró la reserva para este usuario y recurso.");
+
+        if (reservaCancelada) {
+            notificarDisponibilidad(recurso);
+        } else {
+            System.out.println("No se encontró la reserva para este usuario y recurso.");
+        }
     }
+
 
 
     public void mostrarReservas() {
@@ -67,15 +73,19 @@ public class GestorReservas {
             }
         }
     }
-    /*
-    //SE PUEDE LLEGAR A IMPLEMENTAR
-    public Usuario obtenerSiguienteReserva(RecursoDigital recurso) {
-        for (Reserva r : colaReservas) {
-            if (r.getRecurso().equals(recurso)) {
-                return r.getUsuario(); // devuelve el próximo usuario para ese recurso
+    private void notificarDisponibilidad(RecursoDigital recurso) {
+        for (Reserva reserva : colaReservas) {
+            if (reserva.getRecurso().equals(recurso)) {
+                String mensaje = "ALERTA: El recurso " + recurso.getTitulo() + " está disponible para el usuario " + reserva.getUsuario().getNombre() + ".";
+                notificador.enviarNotificacion(mensaje, reserva.getUsuario());
+                return;
             }
         }
-        return null;
     }
-     */
+
+
+    public PriorityBlockingQueue<Reserva> getColaReservas() {
+        return colaReservas;
+    }
+
 }

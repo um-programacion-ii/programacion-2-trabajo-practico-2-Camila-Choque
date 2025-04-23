@@ -57,6 +57,9 @@ public class Prestamo {
                 "Fecha de préstamo: " + fechaPrestamo + "\n" +
                 "Fecha estimada de devolución: " + fechaDevolucion;
     }
+    public void renovar(int dias) {
+        this.fechaDevolucion = this.fechaDevolucion.plusDays(dias);
+    }
 
 
 }

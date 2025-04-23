@@ -43,7 +43,7 @@ public class GestorUsuario {
         } else {
             System.out.println("Lista de usuarios:");
             for (Usuario u : usuarios) {
-                System.out.println("                      ");
+                System.out.println("----------------------------");
                 System.out.println(u);
             }
         }
